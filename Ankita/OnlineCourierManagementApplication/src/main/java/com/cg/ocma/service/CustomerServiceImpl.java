@@ -25,19 +25,17 @@ public class CustomerServiceImpl implements ICustomerService {
 	private CourierRepo courierRepo;
 	
 	@Autowired
-	private AddressRepo addressRepo;
-	
-	@Autowired
 	private ComplaintRepo complaintRepo;
 	
 	@Autowired
 	private CustomerRepo customerRepo;
 	
 	@Autowired
-	private EMParser parser;
+	private AddressRepo addressRepo;
 	
-	private static final String alreadyExists=" already exists!";
-	
+	@Autowired
+	private EMParser parser;	
+
 	public CustomerServiceImpl() {
 		/* No implementation */
 	}
@@ -52,9 +50,10 @@ public class CustomerServiceImpl implements ICustomerService {
 	@Transactional
 	@Override
 	public int initiateProcess(CourierModel courier) throws DuplicateCourierFoundException {
+		
 		if(courier != null) {
 			if(courierRepo.existsById(courier.getCourierId())) {
-				throw new DuplicateCourierFoundException("Courier with id " + courier.getCourierId() + alreadyExists);
+				throw new DuplicateCourierFoundException("Courier with id " + courier.getCourierId() + " already exists!");
 			} else {
 				parser.parse(courierRepo.save(parser.parse(courier)));
 			}
@@ -68,7 +67,7 @@ public class CustomerServiceImpl implements ICustomerService {
 		if(customer != null) {
 			if(customerRepo.existsById(customer.getCustomerid())) {
 				
-				throw new DuplicateCustomerFoundException("Customer with id " + customer.getCustomerid() + alreadyExists);
+				throw new DuplicateCustomerFoundException("Customer with id " + customer.getCustomerid() + " already exists!");
 			} else {
 				parser.parse(customerRepo.save(parser.parse(customer)));
 			}
@@ -83,7 +82,7 @@ public class CustomerServiceImpl implements ICustomerService {
 		if(address != null) {
 			if(addressRepo.existsById(address.getAddressid())) {
 				
-				throw new DuplicateAddressFoundException("Address with id " + address.getAddressid() + alreadyExists);
+				throw new DuplicateAddressFoundException("Address with id " + address.getAddressid() + " already exists!");
 			} else {
 				
 				parser.parse(addressRepo.save(parser.parse(address)));
@@ -95,7 +94,7 @@ public class CustomerServiceImpl implements ICustomerService {
 	@Override
 	public String checkOnlineTrackingStatus(int consignmentno) throws CourierNotFoundException{
 		
-		if(courierRepo.findByConsignmentNo(consignmentno) == null) {
+		if(courierRepo.existsByConsignmentNo(consignmentno) == false) {
 			throw new CourierNotFoundException("Courier with consignment no " + consignmentno + " doesn't exist!");
 		} else {
 			return ((courierRepo.findByConsignmentNo(consignmentno)).getStatus()).toString();
@@ -109,8 +108,7 @@ public class CustomerServiceImpl implements ICustomerService {
 		
 		if(complaint != null) {
 			if(complaintRepo.existsById(complaint.getComplaintId())) {
-		
-				throw new DuplicateComplaintFoundException("Complaint with id " + complaint.getComplaintId() + alreadyExists);
+				throw new DuplicateComplaintFoundException("Complaint with id " + complaint.getComplaintId() + " already exists!");
 			} else {
 				parser.parse(complaintRepo.save(parser.parse(complaint)));
 			}

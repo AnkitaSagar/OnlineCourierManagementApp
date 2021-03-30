@@ -46,8 +46,10 @@ public class OfficeOutletServiceImpl implements IOfficeOutletService {
 		
 		if(officeoutlet != null) {
 			if(officeRepo.existsById(officeoutlet.getOfficeid())) {
+				
 				throw new DuplicateOfficeOutletFoundException("Office Outlet with id " + officeoutlet.getOfficeid() + " already exists!");
 			} else {
+				
 				parser.parse(officeRepo.save(parser.parse(officeoutlet)));
 			}
 		} 
@@ -151,7 +153,6 @@ public class OfficeOutletServiceImpl implements IOfficeOutletService {
 			}
 		}
 	}
-
 
 	
 

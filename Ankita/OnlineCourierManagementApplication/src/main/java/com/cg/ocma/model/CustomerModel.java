@@ -1,9 +1,9 @@
 package com.cg.ocma.model;
 
-
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
-import com.cg.ocma.entities.BankAccount;
+import com.cg.ocma.entities.BankAccountEntity;
 
 public class CustomerModel {
 	
@@ -12,22 +12,21 @@ public class CustomerModel {
 	@NotNull(message="This field cannot be omitted")
 	private long aadharno;
 	
-	@NotNull(message="This field cannot be omitted")
+	@NotEmpty(message="This field cannot be empty")
 	private String firstname;
 	
-	@NotNull(message="This field cannot be omitted")
+	@NotEmpty(message="This field cannot be empty")
 	private String lastname;
 	
-	@NotNull(message="Mobile number cannot be omitted")
 	private long mobileno;
 
-	private BankAccount acct;
+	private BankAccountEntity acct;
 
 	public CustomerModel() {
 		 
 	}
 
-	public CustomerModel(int customerid,long aadharno, String firstname, String lastname, long mobileno, BankAccount acct) {
+	public CustomerModel(int customerid,long aadharno, String firstname, String lastname, long mobileno, BankAccountEntity acct) {
 		super();
 		this.customerid = customerid;
 		this.aadharno = aadharno;
@@ -82,15 +81,14 @@ public class CustomerModel {
 		this.mobileno = mobileno;
 	}
 
-	public BankAccount getAcct() {
+	public BankAccountEntity getAcct() {
 		return acct;
 	}
 
-	public void setAcct(BankAccount acct) {
+	public void setAcct(BankAccountEntity acct) {
 		this.acct = acct;
 	}
-
-
+	
 	@Override
 	public String toString() {
 		return "CustomerModel [customerid=" + customerid + ", aadharno=" + aadharno + ", firstname=" + firstname

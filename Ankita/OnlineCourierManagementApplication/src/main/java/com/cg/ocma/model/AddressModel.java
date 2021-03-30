@@ -3,12 +3,12 @@ package com.cg.ocma.model;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
-import com.cg.ocma.entities.CourierOfficeOutlet;
-import com.cg.ocma.entities.Customer;
+import com.cg.ocma.entities.CourierOfficeOutletEntity;
+import com.cg.ocma.entities.CustomerEntity;
 
 public class AddressModel {
 	
-private int addressid;
+	private int addressid;
 	
 	@NotEmpty(message="This field cannot be empty")
 	@NotNull(message="This field cannot be omitted")
@@ -33,9 +33,9 @@ private int addressid;
 
 	private int zip;
 
-	private Customer customer;
+	private CustomerEntity customer;
 	
-	private CourierOfficeOutlet office;
+	private CourierOfficeOutletEntity office;
 	
 	public AddressModel() {
 		
@@ -43,7 +43,7 @@ private int addressid;
 		
 	}
 	
-	public AddressModel(int addressid, String houseNo, String street, String city, String state, String country, int zip, CourierOfficeOutlet office) {
+	public AddressModel(int addressid, String houseNo, String street, String city, String state, String country, int zip, CourierOfficeOutletEntity office) {
 		super();
 		this.addressid = addressid;
 		this.houseNo = houseNo;
@@ -55,7 +55,7 @@ private int addressid;
 		this.office = office;
 	}
 
-	public AddressModel(int addressid, String houseNo, String street, String city, String state, String country, int zip, Customer customer) {
+	public AddressModel(int addressid, String houseNo, String street, String city, String state, String country, int zip, CustomerEntity customer) {
 		super();
 		this.addressid = addressid;
 		this.houseNo = houseNo;
@@ -126,11 +126,11 @@ private int addressid;
 		this.zip = zip;
 	}
 
-	public Customer getCustomer() {
+	public CustomerEntity getCustomer() {
 		return customer;
 	}
 
-	public void setCustomer(Customer customer) {
+	public void setCustomer(CustomerEntity customer) {
 		this.customer = customer;
 	}
 
@@ -142,79 +142,12 @@ private int addressid;
 		this.addressid = addressid;
 	}
 
-	public CourierOfficeOutlet getOffice() {
+	public CourierOfficeOutletEntity getOffice() {
 		return office;
 	}
 
-	public void setOffice(CourierOfficeOutlet office) {
+	public void setOffice(CourierOfficeOutletEntity office) {
 		this.office = office;
-	}
-
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + addressid;
-		result = prime * result + ((city == null) ? 0 : city.hashCode());
-		result = prime * result + ((country == null) ? 0 : country.hashCode());
-		result = prime * result + ((customer == null) ? 0 : customer.hashCode());
-		result = prime * result + ((houseNo == null) ? 0 : houseNo.hashCode());
-		result = prime * result + ((office == null) ? 0 : office.hashCode());
-		result = prime * result + ((state == null) ? 0 : state.hashCode());
-		result = prime * result + ((street == null) ? 0 : street.hashCode());
-		result = prime * result + zip;
-		return result;
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		AddressModel other = (AddressModel) obj;
-		if (addressid != other.addressid)
-			return false;
-		if (city == null) {
-			if (other.city != null)
-				return false;
-		} else if (!city.equals(other.city))
-			return false;
-		if (country == null) {
-			if (other.country != null)
-				return false;
-		} else if (!country.equals(other.country))
-			return false;
-		if (customer == null) {
-			if (other.customer != null)
-				return false;
-		} else if (!customer.equals(other.customer))
-			return false;
-		if (houseNo == null) {
-			if (other.houseNo != null)
-				return false;
-		} else if (!houseNo.equals(other.houseNo))
-			return false;
-		if (office == null) {
-			if (other.office != null)
-				return false;
-		} else if (!office.equals(other.office))
-			return false;
-		if (state == null) {
-			if (other.state != null)
-				return false;
-		} else if (!state.equals(other.state))
-			return false;
-		if (street == null) {
-			if (other.street != null)
-				return false;
-		} else if (!street.equals(other.street))
-			return false;
-		if (zip != other.zip)
-			return false;
-		return true;
 	}
 
 	@Override
@@ -223,5 +156,4 @@ private int addressid;
 				+ ", state=" + state + ", country=" + country + ", zip=" + zip + ", customer=" + customer + ", office="
 				+ office + "]";
 	}
-
 }

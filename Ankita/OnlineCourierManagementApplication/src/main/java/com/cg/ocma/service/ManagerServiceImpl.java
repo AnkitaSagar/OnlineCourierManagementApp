@@ -7,13 +7,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.cg.ocma.exception.AddressNotFoundException;
 import com.cg.ocma.exception.ComplaintNotFoundException;
 import com.cg.ocma.exception.CourierNotFoundException;
 import com.cg.ocma.exception.DuplicateCustomerFoundException;
 import com.cg.ocma.exception.DuplicateStaffMember;
 import com.cg.ocma.exception.StaffMemberNotFoundException;
+import com.cg.ocma.model.AddressModel;
 import com.cg.ocma.model.ComplaintModel;
 import com.cg.ocma.model.OfficeStaffMembersModel;
+import com.cg.ocma.repository.AddressRepo;
 import com.cg.ocma.repository.ComplaintRepo;
 import com.cg.ocma.repository.CourierRepo;
 import com.cg.ocma.repository.ManagerRepo;
@@ -33,6 +36,9 @@ public class ManagerServiceImpl implements IManagerService {
 	
 	@Autowired
 	private ComplaintRepo complaintRepo;
+	
+	@Autowired
+	private AddressRepo addressRepo;
 	
 	@Autowired
 	private EMParser parser;
@@ -69,7 +75,7 @@ public class ManagerServiceImpl implements IManagerService {
 	@Override
 	public boolean removeStaffMember(int empid) throws StaffMemberNotFoundException{
 		boolean flag = false;
-		if(managerRepo.findById(empid)==null) {
+		if(managerRepo.findById(empid) == null) {
 			throw new StaffMemberNotFoundException("Staff with id " + empid + " doesn't exist!");	
 		} else {
 			managerRepo.deleteById(empid);
@@ -84,7 +90,7 @@ public class ManagerServiceImpl implements IManagerService {
 
 	@Override
 	public OfficeStaffMembersModel getStaffMember(int empid) throws StaffMemberNotFoundException {
-		if(managerRepo.findById(empid)==null) {
+		if(managerRepo.findById(empid) == null) {
 			throw new StaffMemberNotFoundException("Staff with id " + empid + " doesn't exist!");
 		} else {
 			return parser.parse(managerRepo.findById(empid).get());
@@ -135,6 +141,21 @@ public class ManagerServiceImpl implements IManagerService {
 			
 			return complaintRepo.findAll().stream().map(parser::parse).collect(Collectors.toList());
 		}
+	}
+
+	@Override
+	public AddressModel findCustomerAddress(int addressid) throws AddressNotFoundException {
+		
+		if(addressRepo.existsById(addressid) == false) {
+			
+			throw new AddressNotFoundException("The address with id: " + addressid + " doesn't exist!");
+			
+		}else {
+			
+			return parser.parse(addressRepo.findById(addressid).orElse(null));
+			
+		}
+		
 	}
 
 }

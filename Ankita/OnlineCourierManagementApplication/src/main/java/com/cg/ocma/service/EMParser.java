@@ -2,13 +2,13 @@ package com.cg.ocma.service;
 
 import org.springframework.stereotype.Service;
 
-import com.cg.ocma.entities.Address;
-import com.cg.ocma.entities.Complaint;
-import com.cg.ocma.entities.Courier;
-import com.cg.ocma.entities.CourierOfficeOutlet;
+import com.cg.ocma.entities.AddressEntity;
+import com.cg.ocma.entities.ComplaintEntity;
+import com.cg.ocma.entities.CourierEntity;
+import com.cg.ocma.entities.CourierOfficeOutletEntity;
 import com.cg.ocma.entities.CourierStatus;
-import com.cg.ocma.entities.Customer;
-import com.cg.ocma.entities.OfficeStaffMembers;
+import com.cg.ocma.entities.CustomerEntity;
+import com.cg.ocma.entities.OfficeStaffMembersEntity;
 import com.cg.ocma.model.AddressModel;
 import com.cg.ocma.model.ComplaintModel;
 import com.cg.ocma.model.CourierModel;
@@ -19,7 +19,7 @@ import com.cg.ocma.model.OfficeStaffMembersModel;
 @Service
 public class EMParser {
 	
-	public CustomerModel parse(Customer customer) {
+	public CustomerModel parse(CustomerEntity customer) {
 		
 		return customer==null?null:
 			
@@ -32,11 +32,11 @@ public class EMParser {
 		
 	}
 	
-	public Customer parse(CustomerModel customer) {
+	public CustomerEntity parse(CustomerModel customer) {
 		
 		return customer==null?null:
 			
-			new Customer(customer.getCustomerid(),
+			new CustomerEntity(customer.getCustomerid(),
 					customer.getAadharno(),
 					customer.getFirstname(),
 					customer.getLastname(),
@@ -44,11 +44,12 @@ public class EMParser {
 					customer.getAcct());
 		
 	}
-	public Address parse(AddressModel address) {
+	
+	public AddressEntity parse(AddressModel address) {
 		
 		return address==null?null:
 			
-			new Address(address.getAddressid(),
+			new AddressEntity(address.getAddressid(),
 					address.getHouseNo(),
 					address.getStreet(),
 					address.getCity(),
@@ -59,7 +60,7 @@ public class EMParser {
 		
 	}
 	
-	public AddressModel parse(Address address) {
+	public AddressModel parse(AddressEntity address) {
 		
 		return address==null?null:
 			
@@ -73,11 +74,12 @@ public class EMParser {
 					address.getCustomer());
 		
 	}
-	public Address parseOffice(AddressModel address) {
+	
+	public AddressEntity parseOffice(AddressModel address) {
 		
 		return address==null?null:
 			
-			new Address(address.getAddressid(),
+			new AddressEntity(address.getAddressid(),
 					address.getHouseNo(),
 					address.getStreet(),
 					address.getCity(),
@@ -88,7 +90,7 @@ public class EMParser {
 		
 	}
 	
-	public AddressModel parseOffice(Address address) {
+	public AddressModel parseOffice(AddressEntity address) {
 		
 		return address==null?null:
 			
@@ -102,7 +104,7 @@ public class EMParser {
 					address.getOffice());
 	}
 	
-	public CourierModel parse(Courier courier) {
+	public CourierModel parse(CourierEntity courier) {
 		
 		return courier==null?null:
 			
@@ -115,11 +117,11 @@ public class EMParser {
 		
 	}
 	
-	public Courier parse(CourierModel courier) {
+	public CourierEntity parse(CourierModel courier) {
 		
 		return courier==null?null:
 			
-			new Courier(courier.getCourierId(),
+			new CourierEntity(courier.getCourierId(),
 					courier.getConsignmentNo(),
 					courier.getInitiatedDate(),
 					courier.getDeliveredDate(),
@@ -128,7 +130,7 @@ public class EMParser {
 		
 	}
 	
-	public ComplaintModel parse(Complaint complaint) {
+	public ComplaintModel parse(ComplaintEntity complaint) {
 		
 		return complaint==null?null:
 			
@@ -140,11 +142,11 @@ public class EMParser {
 		
 	}
 	
-	public Complaint parse(ComplaintModel complaint) {
+	public ComplaintEntity parse(ComplaintModel complaint) {
 		
 		return complaint==null?null:
 			
-			new Complaint(complaint.getComplaintId(),
+			new ComplaintEntity(complaint.getComplaintId(),
 					complaint.getConsignmentNo(),
 					complaint.getShortDescription(),
 					complaint.getDetailDescription(),
@@ -152,7 +154,7 @@ public class EMParser {
 		
 	}
 	
-	public CourierOfficeOutletModel parse(CourierOfficeOutlet office) {
+	public CourierOfficeOutletModel parse(CourierOfficeOutletEntity office) {
 		
 		return office==null?null:
 			
@@ -161,16 +163,16 @@ public class EMParser {
 					office.getClosingTime());
 	}
 	
-	public CourierOfficeOutlet parse(CourierOfficeOutletModel office) {
+	public CourierOfficeOutletEntity parse(CourierOfficeOutletModel office) {
 		
 		return office==null?null:
 			
-			new CourierOfficeOutlet(office.getOfficeid(),
+			new CourierOfficeOutletEntity(office.getOfficeid(),
 					office.getOpeningTime(),
 					office.getClosingTime());
 	}
 	
-	public OfficeStaffMembersModel parse(OfficeStaffMembers staff) {
+	public OfficeStaffMembersModel parse(OfficeStaffMembersEntity staff) {
 		
 		return staff==null?null:
 			
@@ -180,11 +182,11 @@ public class EMParser {
 					staff.getOffice());
 	}
 	
-	public OfficeStaffMembers parse(OfficeStaffMembersModel staff) {
+	public OfficeStaffMembersEntity parse(OfficeStaffMembersModel staff) {
 		
 		return staff==null?null:
 			
-			new OfficeStaffMembers(staff.getEmpid(),
+			new OfficeStaffMembersEntity(staff.getEmpid(),
 					staff.getName(),
 					staff.getRole(),
 					staff.getOffice());
