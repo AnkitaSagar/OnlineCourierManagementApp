@@ -1,14 +1,14 @@
 package com.cg.ocma.service;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.cg.ocma.exception.CourierNotFoundException;
-import com.cg.ocma.exception.DuplicateAddressFoundException;
-import com.cg.ocma.exception.DuplicateComplaintFoundException;
-import com.cg.ocma.exception.DuplicateCourierFoundException;
-import com.cg.ocma.exception.DuplicateCustomerFoundException;
+import com.cg.ocma.exception.DuplicateFoundException;
+import com.cg.ocma.exception.NotFoundException;
 import com.cg.ocma.model.AddressModel;
 import com.cg.ocma.model.ComplaintModel;
 import com.cg.ocma.model.CourierModel;
@@ -46,56 +46,102 @@ public class CustomerServiceImpl implements ICustomerService {
 		this.complaintRepo = complaintRepo;
 		this.parser=new EMParser();
 	}
-
-	@Transactional
+	
 	@Override
-	public int initiateProcess(CourierModel courier) throws DuplicateCourierFoundException {
+	public boolean loginCustomer(int customerId, String password) {
 		
-		if(courier != null) {
-			if(courierRepo.existsById(courier.getCourierId())) {
-				throw new DuplicateCourierFoundException("Courier with id " + courier.getCourierId() + " already exists!");
+		boolean flag = true;
+		if(customerRepo.existsById(customerId)) {
+			
+			String compare = (customerRepo.findById(customerId).orElse(null)).getPassword();
+			if((compare.compareTo(password)) == 0) { 
+				
+				flag = true;
 			} else {
-				parser.parse(courierRepo.save(parser.parse(courier)));
+				
+				flag = false;
 			}
-		} 
-		return courier.getConsignmentNo();
+			
+		} else {
+			
+			flag = false;
+			
+		}
+		
+		return flag;
+		
 	}
 	
 	@Transactional
 	@Override
-	public int register(CustomerModel customer) throws DuplicateCustomerFoundException {
+	public boolean register(CustomerModel customer) throws DuplicateFoundException {
+		
+		boolean flag = false;
 		if(customer != null) {
-			if(customerRepo.existsById(customer.getCustomerid())) {
+			if(customerRepo.existsByAadharno(customer.getAadharno())) {
 				
-				throw new DuplicateCustomerFoundException("Customer with id " + customer.getCustomerid() + " already exists!");
+				throw new DuplicateFoundException("Customer with aadhar number  " + customer.getAadharno() + " already exists!");
 			} else {
 				parser.parse(customerRepo.save(parser.parse(customer)));
+				flag = true;
 			}
 		}
 		
-		return customer.getCustomerid();
+		return flag;
+	}
+	
+	@Override
+	public CustomerModel getCustomer(int customerid) throws NotFoundException {
+		if(customerRepo.existsById(customerid) == false) {
+			
+			throw new NotFoundException("Customer with id " + customerid + " does not exist!");
+			
+		}else {
+			
+			return parser.parse(customerRepo.findById(customerid).orElse(null));
+			
+		}
 	}
 	
 	@Transactional
 	@Override
-	public int registerAddress(AddressModel address) throws DuplicateAddressFoundException{
+	public boolean registerAddress(AddressModel address) throws DuplicateFoundException{
+		
+		boolean flag = false;
 		if(address != null) {
-			if(addressRepo.existsById(address.getAddressid())) {
+			if(addressRepo.existsByHouseNo(address.getHouseNo())) {
 				
-				throw new DuplicateAddressFoundException("Address with id " + address.getAddressid() + " already exists!");
+				throw new DuplicateFoundException("Address with the same house number " + address.getHouseNo() + " already exists!");
 			} else {
 				
 				parser.parse(addressRepo.save(parser.parse(address)));
+				flag = true;
 			}
 		}
-		return address.getAddressid();
+		return flag;
+	}
+
+
+	@Transactional
+	@Override
+	public int initiateProcess(CourierModel courier) {
+			
+		if(courier != null) {
+			
+			int consignmentno = (int) Math.floor(Math.random()*(10000 - 5000 + 1) + 5000);
+			courier.setConsignmentNo(consignmentno);
+			courier.setStatus("INITIATED");
+			parser.parse(courierRepo.save(parser.parse(courier)));
+		} 
+		
+		return courier.getConsignmentNo();
 	}
 
 	@Override
-	public String checkOnlineTrackingStatus(int consignmentno) throws CourierNotFoundException{
+	public String checkOnlineTrackingStatus(int consignmentno) throws NotFoundException{
 		
 		if(courierRepo.existsByConsignmentNo(consignmentno) == false) {
-			throw new CourierNotFoundException("Courier with consignment no " + consignmentno + " doesn't exist!");
+			throw new NotFoundException("Courier with consignment no " + consignmentno + " doesn't exist!");
 		} else {
 			return ((courierRepo.findByConsignmentNo(consignmentno)).getStatus()).toString();
 		}
@@ -104,18 +150,46 @@ public class CustomerServiceImpl implements ICustomerService {
 
 	@Transactional
 	@Override
-	public int registerComplaint(ComplaintModel complaint) throws DuplicateComplaintFoundException {
+	public boolean registerComplaint(ComplaintModel complaint) throws DuplicateFoundException {
 		
+		boolean flag = false;
 		if(complaint != null) {
-			if(complaintRepo.existsById(complaint.getComplaintId())) {
-				throw new DuplicateComplaintFoundException("Complaint with id " + complaint.getComplaintId() + " already exists!");
+			if(complaintRepo.existsByConsignmentNo(complaint.getConsignmentNo())) {
+				throw new DuplicateFoundException("Complaint for the courier with consignment id " + complaint.getConsignmentNo() + " already exists!");
+				
 			} else {
 				parser.parse(complaintRepo.save(parser.parse(complaint)));
+				flag = true;
 			}
 		} 
-		return complaint.getComplaintId();
+		return flag;
 		
 	}
 
+	@Override
+	public List<CourierModel> getCouriers(int customerid) throws NotFoundException {
+		
+		if(courierRepo.findAllByCustomerid(customerid) == null) {
+			
+			throw new NotFoundException("No couriers to show for customer with customer Id " + customerid);
+		}else {
+			
+			return courierRepo.findAllByCustomerid(customerid).stream().map(parser::parse).collect(Collectors.toList());
+			
+		}
+	}
+
+	@Override
+	public List<ComplaintModel> getComplaints(int customerid) throws NotFoundException {
+		
+		if(complaintRepo.findAllByCustomerid(customerid) == null) {
+			
+			throw new NotFoundException("No complaints to show for customer with customer Id " + customerid);
+		}else {
+			
+			return complaintRepo.findAllByCustomerid(customerid).stream().map(parser::parse).collect(Collectors.toList());
+			
+		}
+	}
 
 }

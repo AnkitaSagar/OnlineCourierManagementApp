@@ -1,10 +1,12 @@
 package com.cg.ocma.service;
 
+import java.time.LocalDate;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.cg.ocma.entities.CourierStatus;
-import com.cg.ocma.exception.CourierNotFoundException;
+import com.cg.ocma.exception.NotFoundException;
 import com.cg.ocma.repository.CourierRepo;
 
 @Service
@@ -28,11 +30,11 @@ public class ShipmentServiceImpl implements IShipmentService {
 	}
 
 	@Override
-	public boolean initiateShipmentTransaction(int courierid) throws CourierNotFoundException{
+	public boolean initiateShipmentTransaction(int courierid) throws NotFoundException{
 		
 		if(courierRepo.existsById(courierid) == false) {
 			
-			throw new CourierNotFoundException("Courier with id " + courierid + " does not exist");
+			throw new NotFoundException("Courier with id " + courierid + " does not exist");
 			
 		} else{
 
@@ -45,11 +47,11 @@ public class ShipmentServiceImpl implements IShipmentService {
 	}
 
 	@Override
-	public String checkShipmentStatus(int courierid) throws CourierNotFoundException{
+	public String checkShipmentStatus(int courierid) throws NotFoundException{
 
 		if(courierRepo.existsById(courierid) == false) {
 			
-			throw new CourierNotFoundException("Courier with id " + courierid + " doesn't exist!");
+			throw new NotFoundException("Courier with id " + courierid + " doesn't exist!");
 		} else {
 			return (courierRepo.findById(courierid).orElse(null)).getStatus().toString();
 		}
@@ -57,16 +59,17 @@ public class ShipmentServiceImpl implements IShipmentService {
 	}
 
 	@Override
-	public boolean closeShipmentTransaction(int courierid) throws CourierNotFoundException{
+	public boolean closeShipmentTransaction(int courierid) throws NotFoundException{
 		
 		if(courierRepo.existsById(courierid) == false) {
 			
-			throw new CourierNotFoundException("Courier with id " + courierid + " does not exist");
+			throw new NotFoundException("Courier with id " + courierid + " does not exist");
 			
 		} else{
 			
-
+			
 			(courierRepo.findById(courierid).orElse(null)).setStatus(CourierStatus.DELIVERED);
+			(courierRepo.findById(courierid).orElse(null)).setDeliveredDate(LocalDate.now());
 			parser.parse(courierRepo.save(courierRepo.findById(courierid).orElse(null)));
 			return true;
 			
@@ -75,10 +78,10 @@ public class ShipmentServiceImpl implements IShipmentService {
 	}
 
 	@Override
-	public boolean rejectShipmentTransaction(int courierid) throws CourierNotFoundException{
+	public boolean rejectShipmentTransaction(int courierid) throws NotFoundException{
 		if(courierRepo.existsById(courierid) == false) {
 			
-			throw new CourierNotFoundException("Courier with id " + courierid + " does not exist");
+			throw new NotFoundException("Courier with id " + courierid + " does not exist");
 			
 		} else{
 			

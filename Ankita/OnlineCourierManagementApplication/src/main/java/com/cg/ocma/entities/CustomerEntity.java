@@ -36,6 +36,9 @@ public class CustomerEntity {
 	@Column(name = "mobileno")
 	private long mobileno;
 	
+	@Column(name = "password")
+	private String password;
+	
 	@Embedded
 	private BankAccountEntity acct;
 	
@@ -51,23 +54,25 @@ public class CustomerEntity {
 		
 	}
 
-	public CustomerEntity(int customerid, long aadharno, String firstname, String lastname, long mobileno, BankAccountEntity acct) {
+	public CustomerEntity(int customerid, long aadharno, String firstname, String lastname, long mobileno, String password, BankAccountEntity acct) {
 		super();
 		this.customerid = customerid;
 		this.aadharno = aadharno;
 		this.firstname = firstname;
 		this.lastname = lastname;
 		this.mobileno = mobileno;
+		this.password = password;
 		this.acct = acct;
 	}
 
-	public CustomerEntity(int customerid, long aadharno, String firstname, String lastname, long mobileno) {
+	public CustomerEntity(int customerid, long aadharno, String firstname, String lastname, long mobileno, String password) {
 		super();
 		this.customerid = customerid;
 		this.aadharno = aadharno;
 		this.firstname = firstname;
 		this.lastname = lastname;
 		this.mobileno = mobileno;
+		this.password = password;
 	}
 
 	public long getAadharno() {
@@ -112,6 +117,14 @@ public class CustomerEntity {
 
 	public int getCustomerid() {
 		return customerid;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
 	@Override

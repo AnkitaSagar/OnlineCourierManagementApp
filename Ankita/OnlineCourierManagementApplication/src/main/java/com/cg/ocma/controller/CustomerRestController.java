@@ -1,5 +1,7 @@
 package com.cg.ocma.controller;
 
+import java.util.List;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,11 +16,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.cg.ocma.exception.CourierNotFoundException;
-import com.cg.ocma.exception.DuplicateAddressFoundException;
-import com.cg.ocma.exception.DuplicateComplaintFoundException;
-import com.cg.ocma.exception.DuplicateCourierFoundException;
-import com.cg.ocma.exception.DuplicateCustomerFoundException;
+import com.cg.ocma.exception.DuplicateFoundException;
+import com.cg.ocma.exception.NotFoundException;
 import com.cg.ocma.model.AddressModel;
 import com.cg.ocma.model.ComplaintModel;
 import com.cg.ocma.model.CourierModel;
@@ -26,85 +25,98 @@ import com.cg.ocma.model.CustomerModel;
 import com.cg.ocma.service.ICustomerService;
 
 @RestController
-@RequestMapping("/home/customer")
-@CrossOrigin
+@RequestMapping("/home/customerid={customerid}")
+@CrossOrigin(origins = "*")
 public class CustomerRestController {
 
 	@Autowired
 	private ICustomerService customerService;
 	
-	@PostMapping("/{customerid}")
-	public ResponseEntity <String> loginAction(@PathVariable("customerid") int customerid) {
+	@GetMapping("/profile")
+	public ResponseEntity <CustomerModel> getCustomerAction(@PathVariable("customerid") int customerid) throws NotFoundException{
 		
-		return new ResponseEntity <> ("Customer with customer id " + customerid + " has successfully logged in!", HttpStatus.ACCEPTED);
+		return new ResponseEntity <> (customerService.getCustomer(customerid), HttpStatus.OK);
 	}
 	
-	@PostMapping
-	public ResponseEntity <String> registerAction(@RequestBody @Valid CustomerModel customer, BindingResult result) throws DuplicateCustomerFoundException{
+	@PostMapping("/profile/addAddress")
+	public ResponseEntity <String> registerAddressAction(@RequestBody @Valid AddressModel address, BindingResult result) throws DuplicateFoundException{
 		
 		if (result.hasErrors()) {
-			throw new DuplicateCustomerFoundException(GlobalExceptionHandler.messageFrom(result));
+			throw new DuplicateFoundException(GlobalExceptionHandler.messageFrom(result));
 		} else {
 			
-			int customerid = customerService.register(customer);
-			ResponseEntity <String> response = new ResponseEntity <> ("You have successfully registered with the id " + customerid, HttpStatus.CREATED);
-			return response;
+			boolean flag = customerService.registerAddress(address);
+			
+			if(flag) {
+				
+				return new ResponseEntity <> ("You have successfully updated your address!", HttpStatus.CREATED);
+				
+			}else {
+				
+				return new ResponseEntity <> ("Unfortunately you couldn't update your address.", HttpStatus.BAD_REQUEST);
+				
+			}
 			
 		}
 		
 	}
 	
-	@PostMapping("/{customerid}/initiate")
-	public ResponseEntity <String> initiateCourierAction(@RequestBody @Valid CourierModel courier, BindingResult result) throws DuplicateCourierFoundException{
+	@PostMapping("/newCourier")
+	public ResponseEntity <String> initiateCourierAction(@RequestBody @Valid CourierModel courier, BindingResult result) throws DuplicateFoundException{
 		
 		if (result.hasErrors()) {
-			throw new DuplicateCourierFoundException(GlobalExceptionHandler.messageFrom(result));
+			
+			throw new DuplicateFoundException(GlobalExceptionHandler.messageFrom(result));
 		} else {
 			
-			int consignmentid = customerService.initiateProcess(courier);
-			ResponseEntity <String> response = new ResponseEntity <> ("The courier has been registered with consignment id " + consignmentid, HttpStatus.CREATED);
-			return response;
+			int consignmentno = customerService.initiateProcess(courier);
 			
+			return new ResponseEntity <> ("The courier has been successfully registered with consignment number " + consignmentno + " for your reference.", HttpStatus.CREATED);
 		}
 		
 	}
 	
-	@PostMapping("/registerAddress")
-	public ResponseEntity <String> registerAddressAction(@RequestBody @Valid AddressModel address, BindingResult result) throws DuplicateAddressFoundException{
-		
-		if (result.hasErrors()) {
-			throw new DuplicateAddressFoundException(GlobalExceptionHandler.messageFrom(result));
-		} else {
+	@GetMapping("/checkStatus/{consignmentno}")
+	public ResponseEntity <String> checkCourierStatusAction(@PathVariable("consignmentno") int consignmentno) throws NotFoundException {
 			
-			int addressid = customerService.registerAddress(address);
-			ResponseEntity <String> response = new ResponseEntity <> ("You have successfully registered your address with the id " + addressid, HttpStatus.CREATED);
-			return response;
-			
-		}
-		
-	}
-	
-	@GetMapping("/{customerid}/checkStatus/{consignmentno}")
-	public ResponseEntity <String> checkCourierStatusAction(@PathVariable("consignmentno") int consignmentno) throws CourierNotFoundException {
-
 			String status = customerService.checkOnlineTrackingStatus(consignmentno);
-			ResponseEntity <String> response = new ResponseEntity <> ("The status of the courier is: " + status, HttpStatus.OK);
-			return response;
+			return new ResponseEntity <> ("The status of the courier is: " + status, HttpStatus.OK);
+		
 	}
 	
-	@PostMapping("/{customerid}/registerComplaint")
-	public ResponseEntity <String> initiateComplaintAction(@RequestBody @Valid ComplaintModel complaint, BindingResult result) throws DuplicateComplaintFoundException{
+	@PostMapping("/registerComplaint")
+	public ResponseEntity <String> initiateComplaintAction(@RequestBody @Valid ComplaintModel complaint, BindingResult result) throws DuplicateFoundException{
 		
 		if (result.hasErrors()) {
-			throw new DuplicateComplaintFoundException(GlobalExceptionHandler.messageFrom(result));
+			throw new DuplicateFoundException(GlobalExceptionHandler.messageFrom(result));
 		} else {
 			
-			int complaintid = customerService.registerComplaint(complaint);
-			ResponseEntity <String> response = new ResponseEntity <> ("The complaint has been registered with complaint id " + complaintid, HttpStatus.CREATED);
-			return response;
+			boolean flag = customerService.registerComplaint(complaint);
+			
+			if(flag) {
+				
+				return new ResponseEntity <> ("The complaint for courier with consignment id " + complaint.getConsignmentNo() + " has been successfully registered!", HttpStatus.CREATED);
+				
+			}else {
+				
+				return new ResponseEntity <> ("Unfortunately your complaint could not be registered", HttpStatus.BAD_REQUEST);
+				
+			}
 			
 		}
 		
+	}
+	
+	@GetMapping("/getCouriers")
+	public ResponseEntity <List<CourierModel>> getCouriersAction(@PathVariable("customerid") int customerid) throws NotFoundException {
+		
+		return new ResponseEntity <> (customerService.getCouriers(customerid), HttpStatus.OK);
+	}
+	
+	@GetMapping("/getComplaints")
+	public ResponseEntity <List<ComplaintModel>> getComplaintsAction(@PathVariable("customerid") int customerid) throws NotFoundException {
+		
+		return new ResponseEntity <> (customerService.getComplaints(customerid), HttpStatus.OK);
 	}
 	
 }
