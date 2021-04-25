@@ -2,10 +2,10 @@ import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import HomeComponent from './HomeComponent';
 import CustomerComponent from '../component/CustomerComponent';
-import CustomerLoginComponent from '../component/CustomerLoginComponent';
+import Design from '../component/Design';
 import ManagerLoginComponent from '../component/ManagerLoginComponent';
 import ManagerComponent from '../component/ManagerComponent';
-import CustomerRegisterComponent from '../component/CustomerRegisterComponent';
+import CustomerLoginComponent from '../component/CustomerLoginComponent';
 import CustomerProfileComponent from '../component/CustomerProfileComponent';
 import CustomerComplaintsComponent from '../component/CustomerComplaintsComponents';
 import CustomerCouriersComponent from '../component/CustomerCouriersComponents';
@@ -40,7 +40,7 @@ const Routes = () => (
             <Route path={`/:managerid/Shipment`} component={ShipmentComponent} />
 --------------------------------------------------------------------------------------------------------------------------------------
             <Route path={`/login`} component={CustomerLoginComponent}/>
-            <Route path={`/register`} component={CustomerRegisterComponent}/>
+            <Route path={`/register`} component={Design}/>
             <Route path={`/profile/:customerid`} component={CustomerProfileComponent}/>
             <Route path={`/registerAddress/:customerid`} component={CustomerAddressComponent}/>
             <Route path={`/newCourier`} component={AddCourierComponent}/>

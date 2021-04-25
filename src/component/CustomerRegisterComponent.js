@@ -2,8 +2,18 @@ import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import {Redirect} from 'react-router-dom';
+import Button from '@material-ui/core/Button';
+import TextField from '@material-ui/core/TextField';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import Checkbox from '@material-ui/core/Checkbox';
+import Link from '@material-ui/core/Link';
+import Grid from '@material-ui/core/Grid';
+import Box from '@material-ui/core/Box';
+import FormControl from '@material-ui/core/FormControl';
+import MenuItem from'@material-ui/core/MenuItem';
+import DropDownMenu, { Menu } from '@material-ui/core/';
+import InputLabel from '@material-ui/core/InputLabel';
 import * as homeActions from '../store/actions/HomeActions';
-
 
 class CustomerRegisterComponent extends Component {
 
@@ -131,67 +141,141 @@ class CustomerRegisterComponent extends Component {
 
     render() {
         return (
-            <div>
-                <h3>Register</h3>
-                <form onSubmit={this.createCustomer}>
-                    <table>
-                        <tbody>
-                            <tr>
-                                <td><label>First Name:</label></td>
-                                <td><input type="text" placeholder="FirstName" name="firstname" id="firstname" value={this.state.firstname} onChange={this.handleInputChange}></input></td>
-                            </tr>
-                            <tr>
-                                <td><label>Last Name:</label></td>
-                                <td><input type="text" placeholder="LastName" name="lastname" id="lastname" value={this.state.lastname} onChange={this.handleInputChange}></input></td>
-                            </tr>
-                            <tr>
-                                <td><label>Aadhar No.:</label></td>
-                                <td><input type="number" placeholder="AadharNo" name="aadharno" id="aadharno" value={this.state.aadharno} onChange={this.handleInputChange}></input></td>
-                            </tr>
-                            <tr>
-                                <td><label>Mobile No.:</label></td>
-                                <td><input type="number" placeholder="MobileNo" name="mobileno" id="mobileno" value={this.state.mobileno} onChange={this.handleInputChange}></input></td>
-                            </tr>
-                            <tr>
-                                <td><label>Password:</label></td>
-                                <td><input type="password" placeholder="Password" name="password" id="password" value={this.state.password} onChange={this.handleInputChange}></input></td>
-                            </tr>
-                            {/* <tr>
-                                <h3> Enter bank details </h3>
-                            </tr> */}
-                            <tr>
-                                <td><label>Account No.:</label></td>
-                                <td><input type="number" placeholder="AccountNo" name="accountno" id="accountno" value={this.state.accountno} onChange={this.handleInputChange}></input></td>
-                            </tr>
-                            <tr>
-                                <td><label>Account Holder Name:</label></td>
-                                <td><input type="text" placeholder="AccountHolderName" name="accountHolderName" id="accountHolderName" value={this.state.accountHolderName} onChange={this.handleInputChange}></input></td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <label>
-                                    Choose your Account Type:
-                                    <select name="accountType" id="accountType" value={this.state.accountType} onChange={this.handleInputChange}> 
-                                        <option value="CURRENT">CURRENT</option>           
-                                        <option value="SAVINGS">SAVINGS</option>
-                                        <option value="SALARY">SALARY</option>
-                                        <option value="FIXED DEPOSIT">FIXED DEPOSIT</option>
-                                        <option value="NRI">NRI</option>
-                                    </select>
-                                    </label>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    <input type="submit" value="Submit"></input>
-	            </form>
+                <div>
+                    <TextField
+                        variant="outlined"
+                        required
+                        fullWidth
+                        type="text"
+                        id="firstname"
+                        label="First Name"
+                        name="firstname"
+                        autoComplete="fname"
+                        value={this.state.firstname}
+                        onChange={this.handleInputChange}
+                        autoFocus
+                    />
+                    <Box p={2} />
 
-                {
-                    this.props.customer !== undefined &&
-                        <Redirect to="/home" />
-                }
+                    <TextField
+                        variant="outlined"
+                        required
+                        fullWidth
+                        type="text"
+                        id="lastname"
+                        label="Last Name"
+                        name="lastname"
+                        autoComplete="lname"
+                        value={this.state.lastname} 
+                        onChange={this.handleInputChange}
+                        autoFocus
+                    />
+                    <Box p={2} />
+                    <TextField
+                        variant="outlined"
+                        required
+                        fullWidth
+                        type="number"
+                        id="aadharno"
+                        label="Aadhar Number"
+                        name="aadharno"
+                        autoComplete="aadhar"
+                        value={this.state.aadharno} 
+                        onChange={this.handleInputChange}
+                        autoFocus
+                    />
+                    <Box p={2} />
+                    <TextField
+                        variant="outlined"
+                        required
+                        fullWidth
+                        type="number"
+                        id="mobileno"
+                        label="Mobile Number"
+                        name="mobileno"
+                        autoComplete="mobile"
+                        value={this.state.mobileno} 
+                        onChange={this.handleInputChange}
+                        autoFocus
+                    />
+                    <Box p={2} />
+                    <TextField
+                        variant="outlined"
+                        required
+                        fullWidth
+                        type="password"
+                        id="password"
+                        name="password"
+                        label="Password"
+                        autoComplete="current-password"
+                        value={this.state.password} 
+                        onChange={this.handleInputChange}
+                        autoFocus
+                    />
+                    <Box p={2} />
+                    <TextField
+                        variant="outlined"
+                        required
+                        fullWidth
+                        type="number"
+                        id="accountno"
+                        label="Account Number"
+                        name="accountno"
+                        autoComplete="accno"
+                        value={this.state.accountno} 
+                        onChange={this.handleInputChange}
+                        autoFocus
+                    />
+                    <Box p={2} />
+                    <TextField
+                        variant="outlined"
+                        required
+                        fullWidth
+                        type="text"
+                        id="accountHolderName"
+                        label="Account Holder Name"
+                        name="accountHolderName"
+                        autoComplete="accname"
+                        value={this.state.accountHolderName} 
+                        onChange={this.handleInputChange}
+                        autoFocus
+                    />
+
+                    <Box p={2} />
+                    <Menu 
+                        value={this.state.accountType} 
+                        onChange={this.handleInputChange}   
+                        >
+                        <MenuItem value="CURRENT" primaryText="CURRENT"  />
+                        <MenuItem value="SAVINGS" primaryText="SAVINGS" />
+                        <MenuItem value="SALARY" primaryText="SALARY" />
+                        <MenuItem value="FIXED DEPOSIT" primaryText="FIXED DEPOSIT" />
+                        <MenuItem value="NRI" primaryText="NRI" />
+
+                    </Menu>
+                    <Box p={2} />
+                    <FormControlLabel
+                        control={<Checkbox value="agree" color="primary" />}
+                        label="I agree to all the terms and conditions"
+                    />
+
+                    <Button variant="contained" color="secondary" onClick={this.createCustomer}>
+                        Submit
+                    </Button>
                    
-            </div > 
+                    <Grid container>
+                        <Grid item padding= {5} fontSize={20} >
+                            <Link href="/" variant="body2">
+                                {"Already have an account? Sign in"}
+                            </Link>
+                        </Grid>
+                    </Grid>
+
+                    {
+                        this.props.customer !== undefined &&
+                            <Redirect to="/" />
+                    }
+                </div>
         );
     }
 }
@@ -206,5 +290,4 @@ function mapDispatchToProps(dispatch) {
         homeActions: bindActionCreators(homeActions, dispatch)
     }
 };
-
 export default connect(mapStateToProps, mapDispatchToProps)(CustomerRegisterComponent);
