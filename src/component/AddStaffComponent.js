@@ -3,6 +3,11 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import * as managerActions from '../store/actions/ManagerActions';
+import TextField from '@material-ui/core/TextField';
+import Box from '@material-ui/core/Box';
+import InputLabel from '@material-ui/core/InputLabel';
+import Select from '@material-ui/core/Select';
+import Button from '@material-ui/core/Button';
 
 
 class AddStaffComponent extends Component {
@@ -125,55 +130,106 @@ class AddStaffComponent extends Component {
 
         return (
             <div>
-                <h3>Add Staff</h3>
-                <form onSubmit={this.createStaff}>
-                    <table>
-                        <tbody>
-                            <tr>
-                                <td><label>Name:</label></td>
-                                <td><input type="text" placeholder="Name" name="name" id="name" value={this.state.name} onChange={this.handleInputChange}></input></td>
-                            </tr>
-                            <tr>
-                                <td><label>Office Id:</label></td>
-                                <td><input type="number" placeholder="OfficeId" name="officeid" id="officeid" value={this.state.officeid} onChange={this.handleInputChange}></input></td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <label>
-                                    Choose your Staff Type:
-                                    <select type="text" name="role" id="role" value={this.state.role} onChange={this.handleInputChange}> 
-                                        <option value="STAFF">STAFF</option>           
-                                        <option value="ACCOUNTING">ACCOUNTING</option>
-                                        <option value="SALES">SALES</option>
-                                        <option value="MARKETING">MARKETING</option>
-                                    </select>
-                                    </label>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    <input type="submit" value="Submit"></input>
-                </form>
-                {/* 
-                {
-                    this.props.courier !== undefined &&
-                    <Redirect to="/customer/Home" />
-                } */}
 
-            </div >
-        );
-    }
+            <TextField
+                variant="outlined"
+                required
+                fullWidth
+                type="text"
+                id="name"
+                label="Name"
+                name="name"
+                autoComplete="name"
+                value={this.state.name}
+                onChange={this.handleInputChange}
+                autoFocus
+            />
+            <Box m={2} />
+
+            <TextField
+                variant="outlined"
+                required
+                fullWidth
+                type="number"
+                id="officeid"
+                label="Office Id."
+                name="officeid"
+                autoComplete="officeid"
+                value={this.state.officeid}
+                onChange={this.handleInputChange}
+                autoFocus
+            />
+            <Box m={2} />
+
+            <InputLabel htmlFor="role-native-simple">Role</InputLabel>
+                <Select
+                variant="outlined"
+                required
+                fullWidth
+                autoComplete="role"
+                value={this.state.role}
+                onChange={this.handleInputChange}
+                inputProps={{
+                    name: 'role',
+                    id: 'role',
+                }}
+                autoFocus
+                >
+                <option value="STAFF">STAFF</option>           
+                <option value="ACCOUNTING">ACCOUNTING</option>
+                <option value="SALES">SALES</option>
+                <option value="MARKETING">MARKETING</option>
+                </Select>
+                <Box m={2} />
+
+            <Button variant="contained" color="secondary" onClick={this.createManager}>
+                Add
+            </Button>
+
+
+            {/* <h3>Add Staff</h3>
+            <form onSubmit={this.createStaff}>
+                <table>
+                    <tbody>
+                        <tr>
+                            <td><label>Name:</label></td>
+                            <td><input type="text" placeholder="Name" name="name" id="name" value={this.state.name} onChange={this.handleInputChange}></input></td>
+                        </tr>
+                        <tr>
+                            <td><label>Office Id:</label></td>
+                            <td><input type="number" placeholder="OfficeId" name="officeid" id="officeid" value={this.state.officeid} onChange={this.handleInputChange}></input></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label>
+                                Choose your Staff Type:
+                                <select type="text" name="role" id="role" value={this.state.role} onChange={this.handleInputChange}> 
+                                    <option value="STAFF">STAFF</option>           
+                                    <option value="ACCOUNTING">ACCOUNTING</option>
+                                    <option value="SALES">SALES</option>
+                                    <option value="MARKETING">MARKETING</option>
+                                </select>
+                                </label>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <input type="submit" value="Submit"></input>
+            </form> */}
+        </div >
+    );
+}
 }
 
 function mapStateToProps(state) {
 
-    return { staff: state.managerReducer.staff }
+return { staff: state.managerReducer.staff }
 }
 
 function mapDispatchToProps(dispatch) {
-    return {
-        managerActions: bindActionCreators(managerActions, dispatch)
-    }
+return {
+    managerActions: bindActionCreators(managerActions, dispatch)
+}
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(AddStaffComponent);

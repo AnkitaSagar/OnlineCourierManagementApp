@@ -9,8 +9,8 @@ import Checkbox from '@material-ui/core/Checkbox';
 import Link from '@material-ui/core/Link';
 import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
-import FormControl from '@material-ui/core/FormControl';
-import MenuItem from'@material-ui/core/MenuItem';
+import Alert from '@material-ui/lab/Alert';
+import Select from'@material-ui/core/Select';
 import DropDownMenu, { Menu } from '@material-ui/core/';
 import InputLabel from '@material-ui/core/InputLabel';
 import * as homeActions from '../store/actions/HomeActions';
@@ -23,9 +23,9 @@ class CustomerRegisterComponent extends Component {
 
             aadharno: 0,
             acct:{
-            accountHolderName: '',
-            accountType: '',
-            accountno: 0
+                accountHolderName: '',
+                accountType: '',
+                accountno: 0
             },
             firstname: '',
             lastname: '',
@@ -62,67 +62,67 @@ class CustomerRegisterComponent extends Component {
         const { homeActions } = this.props;
         homeActions.createCustomer(payload);
 
-        // if(this.validate()) {
-        //     const { homeActions } = this.props;
-        //     homeActions.createCustomer(payload);        
-        // }
+        if(this.validate()) {
+            const { homeActions } = this.props;
+            homeActions.createCustomer(payload);        
+        }
 
     }
 
-    // validate(){
+     validate(){
 
-    //     let aadharno = this.state.aadharno;
-    //     let firstname =  this.state.firstname;
-    //     let lastname = this.state.lastname;
-    //     let password = this.state.password;
-    //     let mobileno = this.state.mobileno;
-    //     let accountHolderName = this.state.accountHolderName;
-    //     let accountType = this.state.accountType;
-    //     let accountno = this.state.accountno;
-    //     let errors = {};
-    //     let isValid = true;
+         let aadharno = this.state.aadharno;
+         let firstname =  this.state.firstname;
+         let lastname = this.state.lastname;
+         let password = this.state.password;
+         let mobileno = this.state.mobileno;
+         let accountHolderName = this.state.accountHolderName;
+         let accountType = this.state.accountType;
+         let accountno = this.state.accountno;
+         let errors = {};
+         let isValid = true;
     
-    //     if (!aadharno) {
-    //       isValid = false;
-    //       errors["aadharno"] = "Please enter a value";
-    //     }
+         if (!aadharno) {
+           isValid = false;
+           errors["aadharno"] = "Please enter a value";
+         }
     
-    //     if (!firstname) {
-    //       isValid = false;
-    //       errors["firstname"] = "This field cannot be empty";
-    //     }
+         if (!firstname) {
+           isValid = false;
+           errors["firstname"] = "This field cannot be empty";
+         }
         
-    //     if (!lastname) {
-    //         isValid = false;
-    //         errors["lastname"] = "This field cannot be empty";
-    //     }
+         if (!lastname) {
+             isValid = false;
+             errors["lastname"] = "This field cannot be empty";
+         }
 
-    //     if (!password) {
-    //         isValid = false;
-    //         errors["password"] = "A digit must occur at least once, A lower case letter must occur at least once, An upper case letter must occur at least once, A special character must occur at least once, No whitespace allowed in the entire password, Atleast 8 characters must be there";
-    //     }
+         if (!password) {
+             isValid = false;
+             errors["password"] = "A digit must occur at least once, A lower case letter must occur at least once, An upper case letter must occur at least once, A special character must occur at least once, No whitespace allowed in the entire password, Atleast 8 characters must be there";
+         }
 
-    //     if (!mobileno) {
-    //         isValid = false;
-    //         errors["mobileno"] = "This field cannot be empty";
-    //     }
+         if (!mobileno) {
+             isValid = false;
+             errors["mobileno"] = "This field cannot be empty";
+         }
 
-    //     if (!accountHolderName) {
-    //         isValid = false;
-    //         errors["accountHolderName"] = "This field cannot be empty";
-    //     }
+         if (!accountHolderName) {
+             isValid = false;
+             errors["accountHolderName"] = "This field cannot be empty";
+         }
 
-    //     if (!accountno) {
-    //         isValid = false;
-    //         errors["accountno"] = "This field cannot be empty";
-    //     }
+         if (!accountno) {
+            isValid = false;
+             errors["accountno"] = "This field cannot be empty";
+           }
       
-    //     this.setState({
-    //       errors: errors
-    //     });
+         this.setState({
+          errors: errors
+        });
     
-    //     return isValid;
-    // }
+         return isValid;
+     }
 
     clear = () => {
         this.setState = ({
@@ -242,18 +242,29 @@ class CustomerRegisterComponent extends Component {
                     />
 
                     <Box p={2} />
-                    <Menu 
-                        value={this.state.accountType} 
-                        onChange={this.handleInputChange}   
+                    <InputLabel htmlFor="accountType-native-simple">Account Type</InputLabel>
+                    <Select
+                        variant="outlined"
+                        required
+                        fullWidth
+                        autoComplete="accounType"
+                        value={this.state.accountType}
+                        onChange={this.handleInputChange}
+                        inputProps={{
+                            name: 'accountType',
+                            id: 'accountType',
+                        }}
+                        autoFocus
                         >
-                        <MenuItem value="CURRENT" primaryText="CURRENT"  />
-                        <MenuItem value="SAVINGS" primaryText="SAVINGS" />
-                        <MenuItem value="SALARY" primaryText="SALARY" />
-                        <MenuItem value="FIXED DEPOSIT" primaryText="FIXED DEPOSIT" />
-                        <MenuItem value="NRI" primaryText="NRI" />
+                        <option value="CURRENT">CURRENT</option>
+                        <option value="SAVINGS">SAVINGS</option>
+                        <option value="SALARY">SALARY</option>
+                        <option value="FIXED DEPOSIT">FIXED DEPOSIT</option>
+                        <option value="NRI">NRI</option>
+                    </Select>
 
-                    </Menu>
                     <Box p={2} />
+
                     <FormControlLabel
                         control={<Checkbox value="agree" color="primary" />}
                         label="I agree to all the terms and conditions"
@@ -263,8 +274,9 @@ class CustomerRegisterComponent extends Component {
                         Submit
                     </Button>
                    
-                    <Grid container>
-                        <Grid item padding= {5} fontSize={20} >
+                    <Box p={1} />
+                    <Grid container spacing={3} direction="row" justify="space-evenly" alignItems="center">
+                        <Grid item padding={5} fontSize={20}>
                             <Link href="/" variant="body2">
                                 {"Already have an account? Sign in"}
                             </Link>
@@ -272,9 +284,15 @@ class CustomerRegisterComponent extends Component {
                     </Grid>
 
                     {
-                        this.props.customer !== undefined &&
-                            <Redirect to="/" />
-                    }
+                    this.props.customer !== undefined &&
+                    <Alert action={
+                        <Link to={`/login`}><Button color="inherit" size="small">
+                                    OK
+                        </Button></Link>
+                    }>
+                     You have successfully created an account!
+                    </Alert>
+                }
                 </div>
         );
     }

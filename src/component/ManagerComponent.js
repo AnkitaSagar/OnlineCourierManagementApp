@@ -1,5 +1,7 @@
 import React from 'react';
 import { Link, useParams } from 'react-router-dom';
+import NavBarLogin from '../component/NavBarLogin';
+import ManagerCards from '../component/ManagerCards';
 
 export default function ManagerComponent () {
 
@@ -9,6 +11,8 @@ export default function ManagerComponent () {
     return(
 
         <div>
+            <NavBarLogin/><br></br>
+            <ManagerCards/>
             <h2>Manager Home Page</h2>
             <p>
                 <Link to={`/addManager/${managerid}`}>Add New Manager</Link>

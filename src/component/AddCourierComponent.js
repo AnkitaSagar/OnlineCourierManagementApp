@@ -3,7 +3,9 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import * as customerActions from '../store/actions/CustomerActions';
-
+import TextField from '@material-ui/core/TextField';
+import Box from '@material-ui/core/Box';
+import Button from '@material-ui/core/Button';
 
 class AddCourierComponent extends Component {
 
@@ -116,32 +118,45 @@ class AddCourierComponent extends Component {
         if(this.props.courier !== undefined) {
 
             let cid = parseInt(this.state.customerid)
-            return <Redirect to={`/customer/customerid=${cid}/Home`} />;
+            return <Redirect to={`/byCard/${cid}`} />;
         }
 
         return (
             <div>
-                <h3>Register Courier</h3>
-                <form onSubmit={this.createCourier}>
-                    <table>
-                        <tbody>
-                            <tr>
-                                <td><label>Initiated Date:</label></td>
-                                <td><input type="date" placeholder="Initiated Date" name="initiatedDate" id="initiatedDate" value={this.state.initiatedDate} onChange={this.handleInputChange}></input></td>
-                            </tr>
-                            <tr>
-                                <td><label>Customer Id:</label></td>
-                                <td><input type="number" placeholder="CustomerId" name="customerid" id="customerid" value={this.state.customerid} onChange={this.handleInputChange}></input></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    <input type="submit" value="Submit"></input>
-                </form>
-{/* 
-                {
-                    this.props.courier !== undefined &&
-                    <Redirect to="/customer/Home" />
-                } */}
+
+                <TextField
+                    variant="outlined"
+                    required
+                    fullWidth
+                    type="date"
+                    id="initiatedDate"
+                    // label="Date to initiate"
+                    name="initiatedDate"
+                    autoComplete="initiatedDate"
+                    value={this.state.initiatedDate}
+                    onChange={this.handleInputChange}
+                    autoFocus
+                />
+                <Box m={2} />
+
+                <TextField
+                    variant="outlined"
+                    required
+                    fullWidth
+                    type="number"
+                    id="customerid"
+                    label="Re-enter Customer Id"
+                    name="customerid"
+                    autoComplete="customerid"
+                    value={this.state.customerid}
+                    onChange={this.handleInputChange}
+                    autoFocus
+                />
+                <Box m={2} />
+
+                <Button variant="contained" color="secondary" onClick={this.createCourier}>
+                    Submit
+                </Button>
 
             </div >
         );
@@ -158,4 +173,5 @@ function mapDispatchToProps(dispatch) {
         customerActions: bindActionCreators(customerActions, dispatch)
     }
 };
+
 export default connect(mapStateToProps, mapDispatchToProps)(AddCourierComponent);

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as shipmentActions from '../store/actions/ShipmentActions';
-import { Link } from 'react-router-dom';
+import '../component/Design.css';
  
 class ShipmentStatusesComponent extends Component {
  
@@ -19,29 +19,32 @@ class ShipmentStatusesComponent extends Component {
         
         return (
             <div class="container">
-            <h2>Courier Status</h2>
             {
                  this.props.statuses !== undefined ?
 
-                    <table class="table table-dark table-striped table-hover">
-                        <thead>
-                            <tr>
-                                <th>Courier ID</th>
-                                <th>Customer ID</th>
-                                <th>Status</th>
-                            </tr>
-                        </thead>
-                        <tbody>
+                    <div class="container">
+                        <br></br>
+                        <br></br>
+                        <h2>Courier Status</h2>
+                        <br></br>
+                        <ul class="responsive-table">
+                            <li class="table-header">
+                                <div class="col">Courier ID</div>
+                                <div class="col">Customer ID</div>
+                                <div class="col">Status</div>
+                            </li>
+                        </ul>
+                        <ul>
                             {
                                 this.props.statuses.map((status, index) =>
-                                    <tr>
-                                        <td>{status.courierId}</td>
-                                        <td>{status.customer.customerid}</td>
-                                        <td>{status.status}</td>
-                                    </tr>)
+                                    <li class="table-row">
+                                        <div class="col">{status.courierId}</div>
+                                        <div class="col">{status.customer.customerid}</div>
+                                        <div class="col">{status.status}</div>
+                                    </li>)
                             }
-                        </tbody>
-                    </table>
+                        </ul>
+                    </div>
                     :
                     <h3>No Couriers!</h3>
             }

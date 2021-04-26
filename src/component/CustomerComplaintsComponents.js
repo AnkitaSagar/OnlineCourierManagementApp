@@ -2,8 +2,11 @@ import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as customerActions from '../store/actions/CustomerActions';
-import { Link } from 'react-router-dom';
- 
+import Box from '@material-ui/core/Box';
+import CustomerComplaintsPage from '../component/CustomerComplaintsPage';
+import TestNav2 from '../component/TestNav2';
+import '../component/Design.css'; 
+
 class GetAllComplaintsComponent extends Component {
  
     componentDidMount() {    
@@ -16,31 +19,38 @@ class GetAllComplaintsComponent extends Component {
     render() {
         return (
             <div class="container">
-                <h2>Complaint Details</h2>
+                <Box m={15}/>
+                <CustomerComplaintsPage/>
+                <TestNav2/>
+                <Box m={5}/>
                 {
                      this.props.complaints !== undefined ?
  
-                        <table class="table table-dark table-striped table-hover">
-                            <thead>
-                                <tr>
-                                    <th>Complaint ID</th>
-                                    <th>Consignment No.</th>
-                                    <th>Detailed Description</th>
-                                    <th>Short Description</th>
-                                </tr>
-                            </thead>
-                            <tbody>
+                        <div class="container">
+                            <br></br>
+                            <br></br>
+                            <h2>Complaints!</h2>
+                            <br></br>
+                            <ul class="responsive-table">
+                                <li class="table-header">
+                                    <div class="col">Complaint ID</div>
+                                    <div class="col">Consignment No.</div>
+                                    <div class="col">Detailed Description</div>
+                                    <div class="col">Short Description</div>
+                                </li>
+                            </ul>
+                            <ul>
                                 {
                                     this.props.complaints.map((complaint, index) =>
-                                        <tr>
-                                            <td>{complaint.complaintId}</td>
-                                            <td>{complaint.consignmentNo}</td>
-                                            <td>{complaint.detailDescription}</td>
-                                            <td>{complaint.shortDescription}</td>
-                                        </tr>)
+                                        <li class="table-row">
+                                            <div class="col">{complaint.complaintId}</div>
+                                            <div class="col">{complaint.consignmentNo}</div>
+                                            <div class="col">{complaint.detailDescription}</div>
+                                            <div class="col">{complaint.shortDescription}</div>
+                                        </li>)
                                 }
-                            </tbody>
-                        </table>
+                            </ul>
+                        </div>
                         :
                         <h3>Loading....</h3>
                 }
@@ -58,5 +68,6 @@ function mapDispatchToProps (dispatch) {
    return {
       customerActions : bindActionCreators(customerActions,dispatch)      
    }   
-  };
+};
+
 export default connect(mapStateToProps,mapDispatchToProps) (GetAllComplaintsComponent);

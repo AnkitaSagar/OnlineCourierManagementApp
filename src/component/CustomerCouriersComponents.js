@@ -3,7 +3,10 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as customerActions from '../store/actions/CustomerActions';
 import { Link } from 'react-router-dom';
- 
+import Box from '@material-ui/core/Box';
+import CustomerCouriersPage from '../component/CustomerCouriersPage';
+import TestNav2 from '../component/TestNav2';
+
 class GetAllCouriersComponent extends Component {
  
     componentDidMount() {    
@@ -15,34 +18,41 @@ class GetAllCouriersComponent extends Component {
     render() {
         return (
             <div class="container">
-                <h2>Courier Details</h2>
+                <Box m={15}/>
+              <CustomerCouriersPage/>
+                <TestNav2/>
+                <Box m={5}/>
                 {
                      this.props.couriers !== undefined ?
  
-                        <table class="table table-dark table-striped table-hover">
-                            <thead>
-                                <tr>
-                                    <th>Courier ID</th>
-                                    <th>Consignment No.</th>
-                                    <th>Initiated Date</th>
-                                    <th>Delivered Date</th>
-                                    <th>Status</th>
-                                </tr>
-                            </thead>
-                            <tbody>
+                        <div class="container">
+                            <br></br>
+                            <br></br>
+                            <h2>Courier List!</h2>
+                            <br></br>
+                            <ul class="responsive-table">
+                                <li class="table-header">
+                                    <div class="col">Courier ID</div>
+                                    <div class="col">Consignment No.</div>
+                                    <div class="col">Initiated Date</div>
+                                    <div class="col">Delivered Date</div>
+                                    <div class="col">Status</div>
+                                </li>
+                            </ul>
+                            <ul>
                                 {
                                     this.props.couriers.map((courier, index) =>
-                                        <tr>
-                                            <td>{courier.courierId}</td>
-                                            <td>{courier.consignmentNo}</td>
-                                            <td>{courier.initiatedDate}</td>
-                                            <td>{courier.deliveredDate}</td>
-                                            <td>{courier.status}</td>
+                                        <li class= "table-row">
+                                            <div class="col">{courier.courierId}</div>
+                                            <div class="col">{courier.consignmentNo}</div>
+                                            <div class="col">{courier.initiatedDate}</div>
+                                            <div class="col">{courier.deliveredDate}</div>
+                                            <div class="col">{courier.status}</div>
                                            {/* <td><Link to={`/customerid=${courier.customer.customerid}/checkStatus/${courier.consignmentNo}`}>Check Status</Link></td> */}
-                                        </tr>)
+                                        </li>)
                                 }
-                            </tbody>
-                        </table>
+                            </ul>
+                        </div>
                         :
                         <h3>Loading....</h3>
                 }
@@ -60,6 +70,6 @@ function mapDispatchToProps (dispatch) {
    return {
       customerActions : bindActionCreators(customerActions,dispatch)      
    }   
-};
+  };
 
 export default connect(mapStateToProps,mapDispatchToProps) (GetAllCouriersComponent);
