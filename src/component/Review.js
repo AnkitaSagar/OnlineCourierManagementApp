@@ -7,7 +7,7 @@ import ListItemText from '@material-ui/core/ListItemText';
 import Grid from '@material-ui/core/Grid';
 
 const products = [
-  { name: 'Product 1', desc: 'A nice thing', price: 'Rs. 500' },
+  { name: 'PACKAGE', desc: '02 X 1-98423316', price: 'Rs. 500' },
   { name: 'Shipping', desc: '', price: 'Rs. 50' },
 ];
 

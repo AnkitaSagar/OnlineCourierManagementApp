@@ -8,6 +8,9 @@ import Box from '@material-ui/core/Box';
 import InputLabel from '@material-ui/core/InputLabel';
 import Select from '@material-ui/core/Select';
 import Button from '@material-ui/core/Button';
+import Alert from '@material-ui/lab/Alert';
+import AlertTitle from '@material-ui/lab/AlertTitle';
+
 
 
 class AddStaffComponent extends Component {
@@ -20,7 +23,8 @@ class AddStaffComponent extends Component {
             office: {
                 officeid: 0,
             },
-            role: ''
+            role: '',
+            managerid: 0
 
         }
         this.handleInputChange = this.handleInputChange.bind(this);
@@ -45,7 +49,7 @@ class AddStaffComponent extends Component {
         }
 
         const { managerActions, match } = this.props;
-        managerActions.createStaff(payload, match.params.managerid);
+        managerActions.createStaff(payload);
 
         // if(this.validate()) {
         //     const { homeActions } = this.props;
@@ -115,22 +119,29 @@ class AddStaffComponent extends Component {
             office: {
                 officeid: 0
             },
-            role: ''
+            role: '',
+            managerid: 0
         });
     }
 
     render() {
 
-        if (this.props.staff !== undefined) {
+        // if (this.props.staff !== undefined) {
 
-            const { match } = this.props;
-            let empid = parseInt(match.params.managerid)
-            return <Redirect to={`/manager/managerid=${empid}/Home`} />;
+        //     const { match } = this.props;
+        //     let empid = parseInt(match.params.managerid)
+        //     return <Redirect to={`/manager/managerid=${empid}/Home`} />;
+        // }
+
+        if(this.props.staff !== undefined) {
+            return <Alert severity="success">
+                        <AlertTitle>Success</AlertTitle>
+                     You have successfully added a new staff!
+            </Alert>
         }
 
         return (
             <div>
-
             <TextField
                 variant="outlined"
                 required
@@ -180,9 +191,24 @@ class AddStaffComponent extends Component {
                 <option value="SALES">SALES</option>
                 <option value="MARKETING">MARKETING</option>
                 </Select>
+                
+                <Box m={2} />
+                    <TextField
+                    variant="outlined"
+                    required
+                    fullWidth
+                    type="number"
+                    id="managerid"
+                    label="Re-enter Manager Id"
+                    name="managerid"
+                    autoComplete="managerid"
+                    value={this.state.managerid}
+                    onChange={this.handleInputChange}
+                    autoFocus
+                />
                 <Box m={2} />
 
-            <Button variant="contained" color="secondary" onClick={this.createManager}>
+            <Button variant="contained" color="secondary" onClick={this.createStaff}>
                 Add
             </Button>
 

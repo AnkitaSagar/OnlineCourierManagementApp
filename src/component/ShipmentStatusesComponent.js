@@ -3,6 +3,9 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as shipmentActions from '../store/actions/ShipmentActions';
 import '../component/Design.css';
+import Box from '@material-ui/core/Box';
+import ShipmentStatusesPage from '../component/ShipmentStatusesPage';
+import TestNav3Shipment from '../component/TestNav3Shipment';
  
 class ShipmentStatusesComponent extends Component {
  
@@ -19,6 +22,10 @@ class ShipmentStatusesComponent extends Component {
         
         return (
             <div class="container">
+                <Box m={15}/>
+                    <ShipmentStatusesPage/>
+                    <TestNav3Shipment/>
+                <Box m={5}/>
             {
                  this.props.statuses !== undefined ?
 

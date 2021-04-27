@@ -14,6 +14,7 @@ import Select from'@material-ui/core/Select';
 import DropDownMenu, { Menu } from '@material-ui/core/';
 import InputLabel from '@material-ui/core/InputLabel';
 import * as homeActions from '../store/actions/HomeActions';
+import AlertTitle from '@material-ui/lab/AlertTitle';
 
 class CustomerRegisterComponent extends Component {
 
@@ -59,8 +60,8 @@ class CustomerRegisterComponent extends Component {
 
         }
 
-        const { homeActions } = this.props;
-        homeActions.createCustomer(payload);
+        // const { homeActions } = this.props;
+        // homeActions.createCustomer(payload);
 
         if(this.validate()) {
             const { homeActions } = this.props;
@@ -142,6 +143,16 @@ class CustomerRegisterComponent extends Component {
     render() {
         return (
                 <div>
+                    {
+                    this.props.customer !== undefined &&
+                    
+                    <Alert severity="success">
+                        <AlertTitle>Success</AlertTitle>
+                        You have successfully created an account!
+                    </Alert>
+                    }
+
+                    <Box m={5}/>
                     <TextField
                         variant="outlined"
                         required
@@ -277,22 +288,11 @@ class CustomerRegisterComponent extends Component {
                     <Box p={1} />
                     <Grid container spacing={3} direction="row" justify="space-evenly" alignItems="center">
                         <Grid item padding={5} fontSize={20}>
-                            <Link href="/" variant="body2">
+                            <Link href="/login" variant="body2">
                                 {"Already have an account? Sign in"}
                             </Link>
                         </Grid>
                     </Grid>
-
-                    {
-                    this.props.customer !== undefined &&
-                    <Alert action={
-                        <Link to={`/login`}><Button color="inherit" size="small">
-                                    OK
-                        </Button></Link>
-                    }>
-                     You have successfully created an account!
-                    </Alert>
-                }
                 </div>
         );
     }

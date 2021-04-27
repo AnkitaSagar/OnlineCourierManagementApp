@@ -4,6 +4,9 @@ import { connect } from 'react-redux';
 import * as managerActions from '../store/actions/ManagerActions';
 import { Link } from 'react-router-dom';
 import '../component/Design.css';
+import Box from '@material-ui/core/Box';
+import ManagerOfficesPage from '../component/ManagerOfficesPage';
+import TestNav2Manager from '../component/TestNav2Manager';
 import AddLocationTwoToneIcon from '@material-ui/icons/AddLocationTwoTone';
 import DeleteTwoToneIcon from '@material-ui/icons/DeleteTwoTone';
 import IconButton from '@material-ui/core/IconButton';
@@ -23,6 +26,10 @@ class ManagerAllOfficeComponent extends Component {
 
         return (
             <div class="container">
+                <Box m={15}/>
+                    <ManagerOfficesPage/>
+                    <TestNav2Manager/>
+                <Box m={5}/>
                 {
                      this.props.offices !== undefined ?
  

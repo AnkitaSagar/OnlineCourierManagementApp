@@ -15,14 +15,17 @@ import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
-import FaceIcon from '@material-ui/icons/Face';
+import LocalShippingIcon from '@material-ui/icons/LocalShipping';
 import MailIcon from '@material-ui/icons/Mail';
 import InfoIcon from '@material-ui/icons/Info';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
-import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
-import AssignmentIcon from '@material-ui/icons/Assignment';
+import BusinessIcon from '@material-ui/icons/Business';
 import ClearAllIcon from '@material-ui/icons/ClearAll';
-import ErrorIcon from '@material-ui/icons/Error';
+import FormatListBulletedIcon from '@material-ui/icons/FormatListBulleted';
+import PersonAddIcon from '@material-ui/icons/PersonAdd';
+import GroupAddIcon from '@material-ui/icons/GroupAdd';
+import AddLocationIcon from '@material-ui/icons/AddLocation';
+import PersonAddDisabledIcon from '@material-ui/icons/PersonAddDisabled';
 import { Link } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
 
@@ -93,8 +96,8 @@ const useStyles = makeStyles((theme) => ({
 
 export default function MiniDrawer() {
 
-    let { customerid } = useParams()
-    Number(customerid);
+    let { managerid } = useParams()
+    Number(managerid);
 
   const classes = useStyles();
   const theme = useTheme();
@@ -131,7 +134,7 @@ export default function MiniDrawer() {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" noWrap>
-            Customer Home Page
+            Manager Home Page
           </Typography>
         </Toolbar>
       </AppBar>
@@ -155,9 +158,36 @@ export default function MiniDrawer() {
         </div>
         <Divider />
         <List>
-          {['Profile'].map((text, index) => (
+          {['Add Manager'].map((text, index) => (
             <ListItem button key={text}>
-              <ListItemIcon color="secondary">{index % 2 === 0 ? <Link to= {`/profile/${Number(customerid)}`}><FaceIcon  color="secondary"/></Link>: <InfoIcon />}</ListItemIcon>
+              <ListItemIcon color="secondary">{index % 2 === 0 ? <Link to= {`/addManager/${managerid}`}><PersonAddIcon  color="secondary"/></Link>: <InfoIcon />}</ListItemIcon>
+              <ListItemText primary={text} />
+            </ListItem>
+          ))}
+        </List>
+        <Divider />
+        <List>
+          {['Add Staff'].map((text, index) => (
+            <ListItem button key={text}>
+              <ListItemIcon color="secondary">{index % 2 === 0 ? <Link to= {`/addStaff/${managerid}`}><GroupAddIcon  color="secondary"/></Link>: <InfoIcon />}</ListItemIcon>
+              <ListItemText primary={text} />
+            </ListItem>
+          ))}
+        </List>
+        <Divider />
+        <List>
+          {['Add Office'].map((text, index) => (
+            <ListItem button key={text}>
+              <ListItemIcon color="secondary">{index % 2 === 0 ? <Link to= {`/addOffice/${managerid}`}><AddLocationIcon  color="secondary"/></Link>: <InfoIcon />}</ListItemIcon>
+              <ListItemText primary={text} />
+            </ListItem>
+          ))}
+        </List>
+        <Divider />
+        <List>
+          {['Delete Staff'].map((text, index) => (
+            <ListItem button key={text}>
+              <ListItemIcon color="secondary">{index % 2 === 0 ? <Link to= {`/deleteStaff/${managerid}`}><PersonAddDisabledIcon  color="secondary"/></Link>: <InfoIcon />}</ListItemIcon>
               <ListItemText primary={text} />
             </ListItem>
           ))}
@@ -166,7 +196,7 @@ export default function MiniDrawer() {
         <List>
           {['Get All Couriers'].map((text, index) => (
             <ListItem button key={text}>
-              <ListItemIcon color="secondary">{index % 2 === 0 ? <Link to= {`/getCouriers/${Number(customerid)}`}><AssignmentIcon  color="secondary"/></Link>: <InfoIcon />}</ListItemIcon>
+              <ListItemIcon color="secondary">{index % 2 === 0 ? <Link to= {`/getAllCouriers/${managerid}`}><FormatListBulletedIcon  color="secondary"/></Link>: <InfoIcon />}</ListItemIcon>
               <ListItemText primary={text} />
             </ListItem>
           ))}
@@ -175,25 +205,25 @@ export default function MiniDrawer() {
         <List>
           {['Get All Complaints'].map((text, index) => (
             <ListItem button key={text}>
-              <ListItemIcon color="secondary">{index % 2 === 0 ? <Link to= {`/getComplaints/${Number(customerid)}`}><ClearAllIcon  color="secondary"/></Link>: <InfoIcon />}</ListItemIcon>
+              <ListItemIcon color="secondary">{index % 2 === 0 ? <Link to= {`/getAllComplaints/${managerid}`}><ClearAllIcon  color="secondary"/></Link>: <InfoIcon />}</ListItemIcon>
               <ListItemText primary={text} />
             </ListItem>
           ))}
         </List>
         <Divider />
         <List>
-          {['Send Courier'].map((text, index) => (
+          {['Get All Offices'].map((text, index) => (
             <ListItem button key={text}>
-              <ListItemIcon color="secondary">{index % 2 === 0 ? <Link to= {`/newCourier/${customerid}`}><AddShoppingCartIcon  color="secondary"/></Link>: <InfoIcon />}</ListItemIcon>
+              <ListItemIcon color="secondary">{index % 2 === 0 ? <Link to= {`/getAllOffice/${managerid}`}><BusinessIcon  color="secondary"/></Link>: <InfoIcon />}</ListItemIcon>
               <ListItemText primary={text} />
             </ListItem>
           ))}
         </List>
         <Divider />
         <List>
-          {['File Complaint'].map((text, index) => (
+          {['Shipment'].map((text, index) => (
             <ListItem button key={text}>
-              <ListItemIcon color="secondary">{index % 2 === 0 ? <Link to= {`/registerComplaint/${customerid}`}><ErrorIcon  color="secondary"/></Link>: <InfoIcon />}</ListItemIcon>
+              <ListItemIcon color="secondary">{index % 2 === 0 ? <Link to= {`/${managerid}/Shipment`}><LocalShippingIcon  color="secondary"/></Link>: <InfoIcon />}</ListItemIcon>
               <ListItemText primary={text} />
             </ListItem>
           ))}

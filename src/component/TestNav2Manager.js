@@ -19,12 +19,10 @@ import FaceIcon from '@material-ui/icons/Face';
 import MailIcon from '@material-ui/icons/Mail';
 import InfoIcon from '@material-ui/icons/Info';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
-import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
-import AssignmentIcon from '@material-ui/icons/Assignment';
-import ClearAllIcon from '@material-ui/icons/ClearAll';
-import ErrorIcon from '@material-ui/icons/Error';
+import SupervisedUserCircleIcon from '@material-ui/icons/SupervisedUserCircle';
 import { Link } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
+
 
 const drawerWidth = 240;
 
@@ -91,10 +89,11 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+
 export default function MiniDrawer() {
 
-    let { customerid } = useParams()
-    Number(customerid);
+    let { managerid } = useParams()
+    Number(managerid);
 
   const classes = useStyles();
   const theme = useTheme();
@@ -120,7 +119,7 @@ export default function MiniDrawer() {
       >
         <Toolbar>
           <IconButton
-          color="inherit"
+            color="inherit"
             aria-label="open drawer"
             onClick={handleDrawerOpen}
             edge="start"
@@ -131,7 +130,7 @@ export default function MiniDrawer() {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" noWrap>
-            Customer Home Page
+            Details
           </Typography>
         </Toolbar>
       </AppBar>
@@ -153,47 +152,20 @@ export default function MiniDrawer() {
             {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
           </IconButton>
         </div>
-        <Divider />
+        {/* <Divider />
         <List>
           {['Profile'].map((text, index) => (
             <ListItem button key={text}>
-              <ListItemIcon color="secondary">{index % 2 === 0 ? <Link to= {`/profile/${Number(customerid)}`}><FaceIcon  color="secondary"/></Link>: <InfoIcon />}</ListItemIcon>
+              <ListItemIcon color="primary">{index % 2 === 0 ? <Link to= {`/profile/${customerid}`}><FaceIcon  color="primary"/></Link>: <InfoIcon />}</ListItemIcon>
               <ListItemText primary={text} />
             </ListItem>
           ))}
         </List>
-        <Divider />
+        <Divider/> */}
         <List>
-          {['Get All Couriers'].map((text, index) => (
+          {['Return Home'].map((text, index) => (
             <ListItem button key={text}>
-              <ListItemIcon color="secondary">{index % 2 === 0 ? <Link to= {`/getCouriers/${Number(customerid)}`}><AssignmentIcon  color="secondary"/></Link>: <InfoIcon />}</ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItem>
-          ))}
-        </List>
-        <Divider />
-        <List>
-          {['Get All Complaints'].map((text, index) => (
-            <ListItem button key={text}>
-              <ListItemIcon color="secondary">{index % 2 === 0 ? <Link to= {`/getComplaints/${Number(customerid)}`}><ClearAllIcon  color="secondary"/></Link>: <InfoIcon />}</ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItem>
-          ))}
-        </List>
-        <Divider />
-        <List>
-          {['Send Courier'].map((text, index) => (
-            <ListItem button key={text}>
-              <ListItemIcon color="secondary">{index % 2 === 0 ? <Link to= {`/newCourier/${customerid}`}><AddShoppingCartIcon  color="secondary"/></Link>: <InfoIcon />}</ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItem>
-          ))}
-        </List>
-        <Divider />
-        <List>
-          {['File Complaint'].map((text, index) => (
-            <ListItem button key={text}>
-              <ListItemIcon color="secondary">{index % 2 === 0 ? <Link to= {`/registerComplaint/${customerid}`}><ErrorIcon  color="secondary"/></Link>: <InfoIcon />}</ListItemIcon>
+              <ListItemIcon>{index % 2 === 0 ? <Link to= {`/manager/managerid=${Number(managerid)}/Home`}><SupervisedUserCircleIcon color="secondary"/></Link> : <MailIcon />}</ListItemIcon>
               <ListItemText primary={text} />
             </ListItem>
           ))}
@@ -208,6 +180,7 @@ export default function MiniDrawer() {
           ))}
         </List>
       </Drawer>
+
     </div>
   );
 }

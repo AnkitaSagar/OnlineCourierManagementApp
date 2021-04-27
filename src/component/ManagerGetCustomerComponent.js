@@ -3,6 +3,8 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as managerActions from '../store/actions/ManagerActions';
 import '../component/Design.css';
+import TestNav2Manager from '../component/TestNav2Manager';
+import { Box } from '@material-ui/core';
  
 class ManagerGetCustomerComponent extends Component {
 
@@ -17,6 +19,9 @@ class ManagerGetCustomerComponent extends Component {
         const { customer } = this.props;
         return (
             <div class="container">
+                <TestNav2Manager />
+
+                <Box m={15} />
                 {/* <h2>Customer Details</h2> */}
                 {
                      customer !== undefined ?

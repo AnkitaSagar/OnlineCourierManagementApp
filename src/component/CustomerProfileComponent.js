@@ -5,6 +5,8 @@ import * as customerActions from '../store/actions/CustomerActions';
 import { useParams } from 'react-router';
 import { Link } from 'react-router-dom';
 import Button from '@material-ui/core/Button';
+import TestNav2 from '../component/TestNav2';
+import { Box } from '@material-ui/core';
  
 class CustomerProfileComponent extends Component {
 
@@ -19,10 +21,8 @@ class CustomerProfileComponent extends Component {
         const { customer } = this.props;
         return (
             <div class="container">
-                <br></br>
-                <br></br>
-                <br></br>
-                <h2>Customer Details</h2>
+                <TestNav2 />
+                <Box m={15} />
                 {
                     customer !== undefined ?
 
@@ -117,9 +117,10 @@ class CustomerProfileComponent extends Component {
                             </div>
                         </div>
                         <div class="card-header h5">Address Details</div>
-                        <Link to={'/registerAddress/${customer.customerid}'}>Update</Link>
-                        <Button variant="contained" color="primary" href="/registerAddress/${customer.customerid}">
-                            Link
+                        <Button variant="contained" color="primary">
+                        <Link to={`/registerAddress/${customer.customerid}`}>
+                        Update
+                        </Link>
                         </Button>
 
                     </div>

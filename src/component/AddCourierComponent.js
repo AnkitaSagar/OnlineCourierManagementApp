@@ -6,6 +6,8 @@ import * as customerActions from '../store/actions/CustomerActions';
 import TextField from '@material-ui/core/TextField';
 import Box from '@material-ui/core/Box';
 import Button from '@material-ui/core/Button';
+import Alert from '@material-ui/lab/Alert';
+import AlertTitle from '@material-ui/lab/AlertTitle';
 
 class AddCourierComponent extends Component {
 
@@ -116,7 +118,7 @@ class AddCourierComponent extends Component {
     render() {
 
         if(this.props.courier !== undefined) {
-
+            
             let cid = parseInt(this.state.customerid)
             return <Redirect to={`/byCard/${cid}`} />;
         }

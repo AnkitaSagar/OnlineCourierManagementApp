@@ -8,11 +8,14 @@ import Stepper from '@material-ui/core/Stepper';
 import Step from '@material-ui/core/Step';
 import StepLabel from '@material-ui/core/StepLabel';
 import Button from '@material-ui/core/Button';
+import Box from '@material-ui/core/Box';
 import Link from '@material-ui/core/Link';
 import Typography from '@material-ui/core/Typography';
 import AddressForm from '../component/AddressForm';
 import PaymentForm from '../component/PaymentForm';
 import Review from '../component/Review';
+import TestNav2 from '../component/TestNav2';
+import {useParams} from 'react-router';
 
 function Copyright() {
   return (
@@ -80,6 +83,7 @@ function getStepContent(step) {
 }
 
 export default function Checkout() {
+  let customerid = useParams();
   const classes = useStyles();
   const [activeStep, setActiveStep] = React.useState(0);
 
@@ -94,6 +98,8 @@ export default function Checkout() {
   return (
     <React.Fragment>
       <CssBaseline />
+      <TestNav2 />
+      <Box m={15} />
       <main className={classes.layout}>
         <Paper className={classes.paper}>
           <Typography component="h1" variant="h4" align="center">

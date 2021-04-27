@@ -19,8 +19,10 @@ import FaceIcon from '@material-ui/icons/Face';
 import MailIcon from '@material-ui/icons/Mail';
 import InfoIcon from '@material-ui/icons/Info';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
+import SupervisedUserCircleIcon from '@material-ui/icons/SupervisedUserCircle';
 import { Link } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
+
 
 const drawerWidth = 240;
 
@@ -87,6 +89,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+
 export default function MiniDrawer() {
 
     let { customerid } = useParams()
@@ -108,7 +111,7 @@ export default function MiniDrawer() {
     <div className={classes.root}>
       <CssBaseline />
       <AppBar
-      color="secondary"
+      style={{ background: '#28282B' }}
         position="fixed"
         className={clsx(classes.appBar, {
           [classes.appBarShift]: open,
@@ -116,6 +119,7 @@ export default function MiniDrawer() {
       >
         <Toolbar>
           <IconButton
+            color="inherit"
             aria-label="open drawer"
             onClick={handleDrawerOpen}
             edge="start"
@@ -126,7 +130,7 @@ export default function MiniDrawer() {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" noWrap>
-            Customer Home Page
+            Details
           </Typography>
         </Toolbar>
       </AppBar>
@@ -144,7 +148,7 @@ export default function MiniDrawer() {
         }}
       >
         <div className={classes.toolbar}>
-          <IconButton color="secondary" onClick={handleDrawerClose}>
+          <IconButton color="inherit" onClick={handleDrawerClose}>
             {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
           </IconButton>
         </div>
@@ -152,7 +156,16 @@ export default function MiniDrawer() {
         <List>
           {['Profile'].map((text, index) => (
             <ListItem button key={text}>
-              <ListItemIcon color="secondary">{index % 2 === 0 ? <Link to= {`/profile/${customerid}`}><FaceIcon  color="secondary"/></Link>: <InfoIcon />}</ListItemIcon>
+              <ListItemIcon color="primary">{index % 2 === 0 ? <Link to= {`/profile/${Number(customerid)}`}><FaceIcon  color="secondary"/></Link>: <InfoIcon />}</ListItemIcon>
+              <ListItemText primary={text} />
+            </ListItem>
+          ))}
+        </List>
+        <Divider/>
+        <List>
+          {['Return Home'].map((text, index) => (
+            <ListItem button key={text}>
+              <ListItemIcon>{index % 2 === 0 ? <Link to= {`/customer/customerid=${Number(customerid)}/Home`}><SupervisedUserCircleIcon color="secondary"/></Link> : <MailIcon />}</ListItemIcon>
               <ListItemText primary={text} />
             </ListItem>
           ))}
@@ -167,6 +180,7 @@ export default function MiniDrawer() {
           ))}
         </List>
       </Drawer>
+
     </div>
   );
 }

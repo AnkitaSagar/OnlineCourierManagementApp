@@ -4,21 +4,17 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import Link from '@material-ui/core/Link';
 import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
-import PostAddIcon from '@material-ui/icons/PostAdd';
+import ContactMailIcon from '@material-ui/icons/ContactMail';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
+import OfficeAddressComponent from '../component/OfficeAddressComponent';
+import TestNav2Manager from './TestNav2Manager';
 import Paper from '@material-ui/core/Paper';
-import AddCourierComponent from '../component/AddCourierComponent';
-import TestNav2 from './TestNav2';
-import Footer from './Footer';
-import Card from '@material-ui/core/Card';
-import CardActionArea from '@material-ui/core/CardActionArea';
-import CardMedia from '@material-ui/core/CardMedia';
 
 function Copyright() {
   return (
-    <Typography position= "fixed-bottom" variant="body2" color="textSecondary" align="center">
+    <Typography variant="body2" color="textSecondary" align="center">
       {'Copyright © '}
       <Link color="inherit" href="/">
         Online Courier Management
@@ -31,7 +27,7 @@ function Copyright() {
 
 const useStyles = makeStyles((theme) => ({
     paperContainer: {
-        backgroundImage: `url(https://static.vecteezy.com/system/resources/previews/001/220/874/non_2x/abstract-white-square-grid-background-vector.jpg)`,
+        backgroundImage: `url(https://cdn.statically.io/img/venngage-wordpress.s3.amazonaws.com/uploads/2018/09/Simple-White-Pattern-Background-Image.jpg)`,
         backgroundRepeat: 'no-repeat',
         backgroundSize: 'cover',
     },
@@ -68,33 +64,20 @@ export default function SignIn() {
 
   return (
     <Paper className={classes.paperContainer}>
-    <TestNav2/>
-    <Box m={15}/>
     <Container component="main" maxWidth="xs">
       <CssBaseline />
-      <Box m={5}/>
-      <Card>
-      <CardActionArea>
-        <CardMedia
-          component="img"
-          alt="Courier"
-          height="200"
-          image="https://i.pinimg.com/originals/e5/07/d7/e507d704d4b6fdcb17116762fcd99acd.gif"
-          title="Courier"
-        />
-      </CardActionArea>
-    </Card>
-    <Box m={5}/>
+      <Box m={8}/>
+      <TestNav2Manager/>
       <div className={classes.paper}>
         <Avatar className={classes.avatar}>
-          <PostAddIcon />
+          <ContactMailIcon />
         </Avatar>
         <Typography component="h1" variant="h5">
-          Courier Registration
+          Office Address Registration
         </Typography>
         <form className={classes.form} noValidate>
             <Grid container component="main" spacing={24} direction="row" justify="center" alignItems="center">
-                <AddCourierComponent />
+                <OfficeAddressComponent />
             </Grid>
         </form>
       </div>
@@ -104,7 +87,6 @@ export default function SignIn() {
         <Copyright />
       </Box>
     </Container>
-    <Footer/>
     </Paper>
   );
 }

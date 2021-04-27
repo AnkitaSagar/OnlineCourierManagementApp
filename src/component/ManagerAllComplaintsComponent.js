@@ -6,6 +6,9 @@ import { Link } from 'react-router-dom';
 import '../component/Design.css';
 import IconButton from '@material-ui/core/IconButton';
 import Button from '@material-ui/core/Button';
+import Box from '@material-ui/core/Box';
+import ManagerComplaintsPage from '../component/ManagerComplaintsPage';
+import TestNav2Manager from '../component/TestNav2Manager';
 import PageviewTwoToneIcon from '@material-ui/icons/PageviewTwoTone';
  
 class ManagerAllComplaintsComponent extends Component {
@@ -23,9 +26,13 @@ class ManagerAllComplaintsComponent extends Component {
         // <ComplaintsDesign />
         return (
             <div className="styles.ComplaintsDesign">
+                <Box m={15}/>
+              <ManagerComplaintsPage/>
+                <TestNav2Manager/>
+                <Box m={5}/>
             
             {
-                 this.props.complaints !== undefined ?
+                this.props.complaints !== undefined ?
 
                     <div class="container">
                         <br></br>

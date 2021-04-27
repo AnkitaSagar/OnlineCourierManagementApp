@@ -2,24 +2,24 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
-import Box from '@material-ui/core/Box';
 import { Redirect } from 'react-router-dom';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import Box from '@material-ui/core/Box';
 import Alert from '@material-ui/lab/Alert';
 import AlertTitle from '@material-ui/lab/AlertTitle';
 import * as managerActions from '../store/actions/ManagerActions';
 
-class ManagerDeleteStaffComponent extends React.Component {
+class ManagerDeleteOfficeComponent extends React.Component {
 
     constructor(props) {
         super(props);
         this.state = {
-            empid: 0,
+            officeid: 0,
             managerid: 0,
         }
         this.handleInputChange = this.handleInputChange.bind(this);
-        this.doDelete = this.doDelete.bind(this);
+        this.doDeleteOffice = this.doDeleteOffice.bind(this);
 
     }
 
@@ -29,38 +29,38 @@ class ManagerDeleteStaffComponent extends React.Component {
         });
     }
 
-    doDelete(e) {
+    doDeleteOffice(e) {
 
         e.preventDefault();
         const payload = {
-            empid: this.state.empid,
+            officeid: this.state.officeid,
             managerid: this.state.managerid
         }
 
-        this.props.managerActions.doDelete(payload);
+        this.props.managerActions.doDeleteOffice(payload);
 
     }
 
     render() {
 
-        const { isAuthDelete } = this.props;
+        const { isAuthDeleteOffice } = this.props;
 
-        if (isAuthDelete) {
-
-            // let mid = parseInt(this.state.managerid)
-            // return <Redirect to={`/manager/managerid=${mid}/Home`} />;
+        if (isAuthDeleteOffice) {
 
             return <Alert severity="success">
                         <AlertTitle>Success</AlertTitle>
-                     You have successfully deleted the staff member!
+                     You have successfully deleted the office!
             </Alert>
+
+            // const { match } = this.props;
+            // return <Redirect to={`/manager/managerid=${Number(match.params.managerid)}/Home`} />;
         }
 
         return (
 
             <div>
                 {
-                    (this.props.isAuthDelete === false) && <div>Could Not Delete Employee!</div>
+                    (this.props.isAuthDeleteOffice === false) && <div>Could Not Delete Office!</div>
                 }
 
                 <TextField
@@ -83,20 +83,31 @@ class ManagerDeleteStaffComponent extends React.Component {
                     required
                     fullWidth
                     type="number"
-                    id="empid"
-                    label="Employee to Delete"
-                    name="empid"
-                    autoComplete="empid"
-                    value={this.state.empid}
+                    id="officeid"
+                    label="Office to Delete"
+                    name="officeid"
+                    autoComplete="officeid"
+                    value={this.state.officeid}
                     onChange={this.handleInputChange}
                     autoFocus
                 />
                 <Box m={2} />
 
-                <Button variant="contained" color="secondary" onClick={this.doDelete}>
+                <Button variant="contained" color="secondary" onClick={this.doDeleteOffice}>
                     Delete
                 </Button>
 
+                {/* <p>
+                    <label>Re-enter Manager Id:</label>
+                    <input type="number" placeholder="Manager Id" name="managerid" id="managerid" value={this.state.managerid} onChange={this.handleInputChange}></input>
+                </p>
+                <p>
+                    <label>Office to Delete:</label>
+                    <input type="number" placeholder="Office Id" name="officeid" id="officeid" value={this.state.officeid} onChange={this.handleInputChange}></input>
+                </p>
+                <p>
+                    <button onClick={this.doDeleteOffice}>Delete</button>
+                </p> */}
             </div>
 
         )
@@ -107,7 +118,7 @@ function mapStateToProps(state) {
 
     return {
         deleteMessage: state.managerReducer.deleteMessage,
-        isAuthDelete: state.managerReducer.isAuthDelete
+        isAuthDeleteOffice: state.managerReducer.isAuthDeleteOffice
     }
 }
 
@@ -117,4 +128,4 @@ function mapDispatchToProps(dispatch) {
     }
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(ManagerDeleteStaffComponent);
+export default connect(mapStateToProps, mapDispatchToProps)(ManagerDeleteOfficeComponent);

@@ -19,16 +19,18 @@ import ManagerAllStaffComponent from '../component/ManagerAllStaffComponent';
 import ManagerAllComplaintsComponent from '../component/ManagerAllComplaintsComponent';
 import ManagerGetCustomerComponent from '../component/ManagerGetCustomerComponent'
 import ManagerAllCouriersComponent from '../component/ManagerAllCouriersComponent';
-import ManagerDeleteStaffComponent from '../component/ManagerDeleteStaffComponent';
-import CustomerAddressComponent from '../component/CustomerAddressComponent';
-import OfficeAddressComponent from '../component/OfficeAddressComponent';
+import ManagerDeleteStaffPage from '../component/ManagerDeleteStaffPage';
+import CustomerAddressPage from '../component/CustomerAddressPage';
+import OfficeAddressPage from '../component/OfficeAddressPage';
 import ShipmentComponent from '../component/ShipmentComponent';
 import ManagerAllOfficeComponent from '../component/ManagerAllOfficeComponent';
-import ManagerDeleteOfficeComponent from '../component/ManagerDeleteStaffComponent';
+import ManagerDeleteOfficePage from '../component/ManagerDeleteOfficePage';
 import ShipmentStatusesComponent from '../component/ShipmentStatusesComponent';
-import ShipmentInitiateComponent from '../component/ShipmentInitiateComponent';
-import ShipmentCloseComponent from '../component/ShipmentCloseComponent';
-import ShipmentRejectComponent from '../component/ShipmentRejectComponent'
+import InitiateCourierPage from '../component/InitiateCourierPage';
+import CloseCourierPage from '../component/CloseCourierPage';
+import RejectCourierPage from '../component/RejectCourierPage'
+import AboutUsPage from '../component/AboutUsPage';
+import ServicesPage from '../component/ServicesPage';
 import Checkout from '../component/Checkout';
 
 
@@ -39,16 +41,20 @@ const Routes = () => (
             <Route path={`/customer/customerid=:customerid/Home`} component={CustomerComponent}/>
             <Route path={`/manager/managerid=:managerid/Home`} component={ManagerComponent}/>
             <Route path={`/:managerid/Shipment`} component={ShipmentComponent} />
+            <Route path={`/Services`} component={ServicesPage} />
+            <Route path={`/AboutUs`} component={AboutUsPage} />
+
 --------------------------------------------------------------------------------------------------------------------------------------
             <Route path={`/login`} component={LoginPage}/>
             <Route path={`/register`} component={RegistrationPage}/>
             <Route path={`/profile/:customerid`} component={CustomerProfileComponent}/>
-            <Route path={`/registerAddress/:customerid`} component={CustomerAddressComponent}/>
-            <Route path={`/newCourier`} component={CourierRegister}/>
+            <Route path={`/registerAddress/:customerid`} component={CustomerAddressPage}/>
+            <Route path={`/newCourier/:customerid`} component={CourierRegister}/>
             <Route path={`/getCouriers/:customerid`} component={CustomerCouriersComponent}/>
             <Route path={`/getComplaints/:customerid`} component={CustomerComplaintsComponent}/>
-            <Route path={`/registerComplaint`} component={ComplaintRegister}/>
+            <Route path={`/registerComplaint/:customerid`} component={ComplaintRegister}/>
             <Route path={`/byCard/:customerid`} component={Checkout}/>
+
 ----------------------------------------------------------------------------------------------------------------------------------------
             <Route path={`/managerLogin`} component={ManagerLogin}/>
             <Route path={`/addManager/:managerid`} component={ManagerRegister}/>
@@ -60,14 +66,15 @@ const Routes = () => (
             <Route path={`/getAllCouriers/:managerid`} component={ManagerAllCouriersComponent} />
             <Route path={`/getAllOffice/:managerid`} component={ManagerAllOfficeComponent} />
             <Route path={`/getCustomer/:managerid/view/:customerid`} component={ManagerGetCustomerComponent} />
-            <Route path={`/deleteStaff`} component={ManagerDeleteStaffComponent} />
-            <Route path={`/addAddress/:managerid/office/:officeid`} component={OfficeAddressComponent}/>
-            <Route path={`/deleteOffice/:managerid/office/:officeid`} component={ManagerDeleteOfficeComponent}/>
+            <Route path={`/deleteStaff`} component={ManagerDeleteStaffPage} />
+            <Route path={`/addAddress/:managerid/office/:officeid`} component={OfficeAddressPage}/>
+            <Route path={`/deleteOffice/:managerid/office/:officeid`} component={ManagerDeleteOfficePage}/>
+
 -----------------------------------------------------------------------------------------------------------------------------------
             <Route path={`/getStatus/:managerid`} component={ShipmentStatusesComponent}/>
-            <Route path={`/initiateCourier/:managerid`} component={ShipmentInitiateComponent}/>
-            <Route path={`/closeCourier/:managerid`} component={ShipmentCloseComponent}/>
-            <Route path={`/rejectCourier/:managerid`} component={ShipmentRejectComponent}/>
+            <Route path={`/initiateCourier/:managerid`} component={InitiateCourierPage}/>
+            <Route path={`/closeCourier/:managerid`} component={CloseCourierPage}/>
+            <Route path={`/rejectCourier/:managerid`} component={RejectCourierPage}/>
             
         </Switch>
     </BrowserRouter>
