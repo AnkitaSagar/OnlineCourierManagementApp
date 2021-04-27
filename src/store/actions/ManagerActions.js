@@ -159,8 +159,8 @@ export const createStaff = (payload) => {
 export const createOffice = (payload) => {
 
     let data = {
-        openingTime: payload.openingtime,
-        closingTime: payload.closingtime,
+        openingTime: payload.openingTime,
+        closingTime: payload.closingTime,
         managerid: payload.managerid
 
     }

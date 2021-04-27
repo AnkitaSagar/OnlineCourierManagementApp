@@ -41,7 +41,6 @@ class AddOfficeComponent extends Component {
             closingTime: this.state.closingTime
 
         }
-
         const { managerActions, match } = this.props;
         managerActions.createOffice(payload);
 
