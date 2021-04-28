@@ -34,8 +34,7 @@ export default function ImgMediaCard() {
   return (
 
     <div className={classes.root}>
-        <Navbar/>
-      {/* <Box m={3}/> */}
+      <Navbar/>
       <Carousel fade>
                 <Carousel.Item>
                   <Card>
@@ -58,17 +57,16 @@ export default function ImgMediaCard() {
                 <Box m={5}/>
 
                 <Grid container component="main" spacing={3} direction="row" justify="space-around" alignItems="center">
-      <Grid item xs={12}>
-      <Paper className={classes.paper}>
-      <Card className={classes.root}>
-      <CardContent>
-      Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
-      
-      </CardContent>
-    </Card>
-    </Paper>
-    </Grid>
-    </Grid>
+                  <Grid item xs={12}>
+                  <Paper className={classes.paper}>
+                  <Card className={classes.root}>
+                  <CardContent>
+                    While  courier management is essentially the delivery of your precious cargo from one location to another, our services, while doing just that, ensure that you have the best possible experience. With several awards under our belt, we hold the unbeaten record for the fastest delivery service in India. With 24-hour delivery for local packages and 24-hour customer service, our Online Courier Management Application offers you around-the-clock service. In the rare occasion of any complaints, our courier managers are always on the lookout to solve them as soon as possible while working hand-in-hand with the Shipment department. We keep our courier services as comfy as possible and accessible from the comfort of your houses with our scheduled pick-up service.
+                  </CardContent>
+                  </Card>
+                </Paper>
+              </Grid>
+             </Grid>
 
     <Box m={5}/>
 
@@ -86,9 +84,9 @@ export default function ImgMediaCard() {
         />
       </CardActionArea>
       <CardContent>
-      AKsheya KS (K for kadavule)
+      AKsheya K S
       <Typography variant="body2" color="textSecondary" component="p">
-            All rounder - competition to Jaddu sir
+            Manager Login, Manager Landing, Office Module
           </Typography>
       </CardContent>
     </Card>
@@ -128,9 +126,9 @@ export default function ImgMediaCard() {
         />
       </CardActionArea>
       <CardContent>
-      Paagal Buddy (M for Motte)
+      Ankita Sagar
       <Typography variant="body2" color="textSecondary" component="p">
-            Certified Paagal in all aspects
+            Customer Registration, Manager Actions, Manager Data Handling
           </Typography>
       </CardContent>
     </Card>
@@ -170,10 +168,9 @@ export default function ImgMediaCard() {
         />
       </CardActionArea>
       <CardContent>
-      Sreeja akka
+      Nagisetty Sreeja
       <Typography variant="body2" color="textSecondary" component="p">
-            Special talent - constanly worrying without any worries
-            hobby - worrying 
+        Overseeing Shipment, Courier Status Handling, Manager Shipment Actions
           </Typography>
       </CardContent>
     </Card>
@@ -213,9 +210,9 @@ export default function ImgMediaCard() {
         />
       </CardActionArea>
       <CardContent>
-      Rachana bro
+      Konka Rachana
       <Typography variant="body2" color="textSecondary" component="p">
-            special talent - silent killer, ability to blend anywhere, pindrop silence
+            Customer Login, Customer Landing Page, Customer Authentication 
           </Typography>
       </CardContent>
     </Card>
@@ -255,10 +252,9 @@ export default function ImgMediaCard() {
         />
       </CardActionArea>
       <CardContent>
-      Karan Buddy
+      Karan Thapa
       <Typography variant="body2" color="textSecondary" component="p">
-            no words to describe...multi talented..
-            ability to maintain more than 1 ...
+            Sample Page Templates, Customer Data Handling, Payment Module  
           </Typography>
       </CardContent>
     </Card>
@@ -293,14 +289,14 @@ export default function ImgMediaCard() {
           component="img"
           alt="Couriers"
           height="200"
-          image="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQYYzIOFgA5fAVwXIayorH1zaGuBxXSXYNfTMejy-CuWPAV7pwaoVBDLQsW4eoHWZMooco&usqp=CAU"
+          image="https://pickaface.net/gallery/avatar/20160221_130710_2010_coolboy.png"
           title="Couriers"
         />
       </CardActionArea>
       <CardContent>
-     Sid
+     Sidharth Venkat
       <Typography variant="body2" color="textSecondary" component="p">
-            no specifics...
+            Home Landing Page, About Us Page, Services Page, Routes Handling, PPT
           </Typography>
       </CardContent>
     </Card>
