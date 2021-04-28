@@ -1,3 +1,7 @@
+/*
+ *  Home Page with Carousel
+ */
+
 import React, { Component } from 'react';
 import Carousel from 'react-bootstrap/Carousel';
 import Box from '@material-ui/core/Box';

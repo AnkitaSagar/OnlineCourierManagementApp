@@ -1,3 +1,7 @@
+/*
+ *  Form for updating an adddress for a customer or office
+ */
+
 import React from 'react';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
@@ -7,10 +11,13 @@ import Checkbox from '@material-ui/core/Checkbox';
 
 export default function AddressForm() {
   return (
+
     <React.Fragment>
+
       <Typography variant="h6" gutterBottom>
         Shipping address
       </Typography>
+
       <Grid container spacing={3}>
         <Grid item xs={12} sm={6}>
           <TextField
@@ -22,6 +29,7 @@ export default function AddressForm() {
             autoComplete="given-name"
           />
         </Grid>
+
         <Grid item xs={12} sm={6}>
           <TextField
             required
@@ -32,6 +40,7 @@ export default function AddressForm() {
             autoComplete="family-name"
           />
         </Grid>
+
         <Grid item xs={12}>
           <TextField
             required
@@ -42,6 +51,7 @@ export default function AddressForm() {
             autoComplete="shipping address-line1"
           />
         </Grid>
+
         <Grid item xs={12}>
           <TextField
             id="address2"
@@ -51,6 +61,7 @@ export default function AddressForm() {
             autoComplete="shipping address-line2"
           />
         </Grid>
+
         <Grid item xs={12} sm={6}>
           <TextField
             required
@@ -61,9 +72,11 @@ export default function AddressForm() {
             autoComplete="shipping address-level2"
           />
         </Grid>
+
         <Grid item xs={12} sm={6}>
           <TextField id="state" name="state" label="State/Province/Region" fullWidth />
         </Grid>
+
         <Grid item xs={12} sm={6}>
           <TextField
             required
@@ -74,6 +87,7 @@ export default function AddressForm() {
             autoComplete="shipping postal-code"
           />
         </Grid>
+
         <Grid item xs={12} sm={6}>
           <TextField
             required
@@ -84,6 +98,7 @@ export default function AddressForm() {
             autoComplete="shipping country"
           />
         </Grid>
+
         <Grid item xs={12}>
           <FormControlLabel
             control={<Checkbox color="secondary" name="saveAddress" value="yes" />}
@@ -91,6 +106,7 @@ export default function AddressForm() {
           />
         </Grid>
       </Grid>
+      
     </React.Fragment>
   );
 }

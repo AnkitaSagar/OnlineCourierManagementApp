@@ -1,3 +1,7 @@
+/*
+ *  Home page for customer with links to other customer specific pages
+ */
+
 import React from 'react';
 import { useParams } from 'react-router-dom';
 import TestNav from '../component/TestNav';
@@ -15,7 +19,6 @@ export default function CustomerComponent() {
         <div>
             <TestNav/><br></br>
             <Box m={10}></Box>
-            {/* <NavBarLogin/><br></br> */}
             <CustomerCards/><br></br>
             <Footer/>
         </div>

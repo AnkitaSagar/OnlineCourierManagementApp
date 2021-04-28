@@ -1,3 +1,7 @@
+/*
+ *  Cards for the Home page to go different modules
+ */
+
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
@@ -43,12 +47,7 @@ export default function ImgMediaCard() {
         </CardContent>
       </CardActionArea>
       <CardActions>
-      {/* <Link to={`/login`}><Button size="large" color="primary">
-          Login
-        </Button></Link> */}
-        {/* <Button size="small" color="primary">
-          Learn More
-        </Button> */}
+      
         <Button
         variant="outlined"
         color="primary"
@@ -81,12 +80,7 @@ export default function ImgMediaCard() {
         </CardContent>
       </CardActionArea>
       <CardActions>
-      {/* <Link to={`/managerlogin`}><Button size="large" color="primary">
-          Login
-        </Button></Link> */}
-        {/* <Button size="small" color="primary">
-          Learn More
-        </Button> */}
+      
         <Button
         variant="outlined"
         color="primary"
@@ -119,12 +113,7 @@ export default function ImgMediaCard() {
         </CardContent>
       </CardActionArea>
       <CardActions>
-      {/* <Link to={`/register`}><Button size="large" color="primary">
-          Register
-        </Button></Link> */}
-        {/* <Button size="small" color="primary">
-          Learn More
-        </Button> */}
+      
         <Button
         variant="outlined"
         color="primary"

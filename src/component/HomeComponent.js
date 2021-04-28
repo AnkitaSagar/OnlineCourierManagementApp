@@ -1,5 +1,8 @@
+/*
+ *  Home Component for linking Cards, navbar and footer together
+ */
+
 import React from 'react';
-import { Link } from 'react-router-dom';
 import Navbar from '../component/Navbar';
 import HomePage from '../component/HomePage';
 import HomeCards from '../component/HomeCards';

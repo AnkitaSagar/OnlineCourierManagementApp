@@ -80,7 +80,6 @@ const useStyles = makeStyles((theme) => ({
     alignItems: 'center',
     justifyContent: 'flex-end',
     padding: theme.spacing(0, 1),
-    // necessary for content to be below app bar
     ...theme.mixins.toolbar,
   },
   content: {
@@ -152,16 +151,6 @@ export default function MiniDrawer() {
             {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
           </IconButton>
         </div>
-        {/* <Divider />
-        <List>
-          {['Profile'].map((text, index) => (
-            <ListItem button key={text}>
-              <ListItemIcon color="primary">{index % 2 === 0 ? <Link to= {`/profile/${customerid}`}><FaceIcon  color="primary"/></Link>: <InfoIcon />}</ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItem>
-          ))}
-        </List>
-        <Divider/> */}
         <List>
           {['Return Home'].map((text, index) => (
             <ListItem button key={text}>

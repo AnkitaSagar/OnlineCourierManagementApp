@@ -1,3 +1,7 @@
+/*
+ *  Page for getting all couriers of a particular customer
+ */
+
 import React, { Component } from 'react';
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';

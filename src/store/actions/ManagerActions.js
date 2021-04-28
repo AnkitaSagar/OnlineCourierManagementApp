@@ -189,7 +189,8 @@ export const createAddress = (payload, managerid) => {
         zip: Number(payload.zip),
         office:{
             officeid: Number(payload.officeid),
-        }
+        },
+        managerid: Number(payload.managerid)
     }
     return (dispatch) => {
         return Axios.post(apiUrl + `/managerid=` + managerid + `/registerAddress`, data)

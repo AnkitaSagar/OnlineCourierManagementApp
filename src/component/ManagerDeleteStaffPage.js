@@ -1,3 +1,8 @@
+/*
+ *  Page for deleting a staff by a manager
+ */
+
+
 import React from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import CssBaseline from '@material-ui/core/CssBaseline';

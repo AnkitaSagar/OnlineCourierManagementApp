@@ -1,8 +1,11 @@
+/*
+ *  List for getting all couriers of a particular customer
+ */
+
 import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as customerActions from '../store/actions/CustomerActions';
-import { Link } from 'react-router-dom';
 import Box from '@material-ui/core/Box';
 import CustomerCouriersPage from '../component/CustomerCouriersPage';
 import TestNav2 from '../component/TestNav2';
@@ -48,7 +51,6 @@ class GetAllCouriersComponent extends Component {
                                             <div class="col">{courier.initiatedDate}</div>
                                             <div class="col">{courier.deliveredDate}</div>
                                             <div class="col">{courier.status}</div>
-                                           {/* <td><Link to={`/customerid=${courier.customer.customerid}/checkStatus/${courier.consignmentNo}`}>Check Status</Link></td> */}
                                         </li>)
                                 }
                             </ul>

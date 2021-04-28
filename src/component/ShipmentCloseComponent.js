@@ -1,8 +1,11 @@
+/*
+ *  Page for closing a shipment when the receipent pays the money and accepted the order 
+ */
+
 import React from 'react';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import Box from '@material-ui/core/Box';
-import { Redirect } from 'react-router-dom';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import Alert from '@material-ui/lab/Alert';
@@ -45,9 +48,6 @@ class ShipmentCloseComponent extends React.Component {
         const { isAuthClose } = this.props;
 
         if (isAuthClose) {
-
-            // const { match } = this.props.isAuthClose;
-            // return <Redirect to={`/${Number(match.managerid)}/Shipment`} />
 
             return <Alert severity="success">
                         <AlertTitle>Success</AlertTitle>

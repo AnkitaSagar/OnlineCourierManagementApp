@@ -1,3 +1,7 @@
+/*
+ *  Page for shipment status
+ */
+
 import React, { Component } from 'react';
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';

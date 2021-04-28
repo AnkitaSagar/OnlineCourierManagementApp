@@ -1,3 +1,7 @@
+/*
+ *  Form for Payment after the giving the recepient's address details
+ */
+
 import React from 'react';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';

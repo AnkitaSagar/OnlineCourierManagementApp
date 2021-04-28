@@ -1,3 +1,7 @@
+/*
+ *  Manager Component for linking Cards, Navbar and footer
+ */
+
 import React from 'react';
 import { Link, useParams } from 'react-router-dom';
 import TestNavManager from '../component/TestNavManager';

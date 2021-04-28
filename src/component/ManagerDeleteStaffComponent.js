@@ -1,9 +1,11 @@
+/*
+ *  Form for deleting a staff by a manager
+ */
+
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import Box from '@material-ui/core/Box';
-import { Redirect } from 'react-router-dom';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import Alert from '@material-ui/lab/Alert';
@@ -46,9 +48,6 @@ class ManagerDeleteStaffComponent extends React.Component {
         const { isAuthDelete } = this.props;
 
         if (isAuthDelete) {
-
-            // let mid = parseInt(this.state.managerid)
-            // return <Redirect to={`/manager/managerid=${mid}/Home`} />;
 
             return <Alert severity="success">
                         <AlertTitle>Success</AlertTitle>

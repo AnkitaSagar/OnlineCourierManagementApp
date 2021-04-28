@@ -1,3 +1,7 @@
+/*
+ *  Page for adding an address to office
+ */
+
 import React from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import CssBaseline from '@material-ui/core/CssBaseline';

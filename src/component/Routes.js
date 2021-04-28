@@ -1,3 +1,7 @@
+/*
+ *  Connection given to all other components 
+ */
+
 import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import HomeComponent from './HomeComponent';

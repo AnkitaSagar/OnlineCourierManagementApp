@@ -1,3 +1,7 @@
+/*
+ *  AppBar for the customer for going back to the landing customer's page
+ */
+
 import React from 'react';
 import clsx from 'clsx';
 import { makeStyles, useTheme } from '@material-ui/core/styles';

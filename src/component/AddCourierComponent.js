@@ -1,3 +1,7 @@
+/*
+ *  Form for registering new courier by the customer
+ */
+
 import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
@@ -6,8 +10,6 @@ import * as customerActions from '../store/actions/CustomerActions';
 import TextField from '@material-ui/core/TextField';
 import Box from '@material-ui/core/Box';
 import Button from '@material-ui/core/Button';
-import Alert from '@material-ui/lab/Alert';
-import AlertTitle from '@material-ui/lab/AlertTitle';
 
 class AddCourierComponent extends Component {
 
@@ -43,68 +45,7 @@ class AddCourierComponent extends Component {
 
         const { customerActions } = this.props;
         customerActions.createCourier(payload);
-
-        // if(this.validate()) {
-        //     const { homeActions } = this.props;
-        //     homeActions.createCustomer(payload);        
-        // }
-
     }
-
-    // validate(){
-
-    //     let aadharno = this.state.aadharno;
-    //     let firstname =  this.state.firstname;
-    //     let lastname = this.state.lastname;
-    //     let password = this.state.password;
-    //     let mobileno = this.state.mobileno;
-    //     let accountHolderName = this.state.accountHolderName;
-    //     let accountType = this.state.accountType;
-    //     let accountno = this.state.accountno;
-    //     let errors = {};
-    //     let isValid = true;
-
-    //     if (!aadharno) {
-    //       isValid = false;
-    //       errors["aadharno"] = "Please enter a value";
-    //     }
-
-    //     if (!firstname) {
-    //       isValid = false;
-    //       errors["firstname"] = "This field cannot be empty";
-    //     }
-
-    //     if (!lastname) {
-    //         isValid = false;
-    //         errors["lastname"] = "This field cannot be empty";
-    //     }
-
-    //     if (!password) {
-    //         isValid = false;
-    //         errors["password"] = "A digit must occur at least once, A lower case letter must occur at least once, An upper case letter must occur at least once, A special character must occur at least once, No whitespace allowed in the entire password, Atleast 8 characters must be there";
-    //     }
-
-    //     if (!mobileno) {
-    //         isValid = false;
-    //         errors["mobileno"] = "This field cannot be empty";
-    //     }
-
-    //     if (!accountHolderName) {
-    //         isValid = false;
-    //         errors["accountHolderName"] = "This field cannot be empty";
-    //     }
-
-    //     if (!accountno) {
-    //         isValid = false;
-    //         errors["accountno"] = "This field cannot be empty";
-    //     }
-
-    //     this.setState({
-    //       errors: errors
-    //     });
-
-    //     return isValid;
-    // }
 
     clear = () => {
         this.setState = ({

@@ -1,5 +1,8 @@
+/*
+ *  Form for initiating a courier by manager
+ */
+
 import React from 'react';
-import { Redirect } from 'react-router-dom';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import Box from '@material-ui/core/Box';

@@ -1,3 +1,7 @@
+/*
+ *  Cards for the shipment module 
+ */
+
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
@@ -51,9 +55,6 @@ export default function ShipmentCards() {
       <Link to={`/initiateCourier/${managerid}`}><Button size="large" color="primary">
           Initiate
         </Button></Link>
-        {/* <Button size="small" color="primary">
-          Learn More
-        </Button> */}
       </CardActions>
     </Card>
     </Grid>
@@ -81,9 +82,6 @@ export default function ShipmentCards() {
       <Link to={`/closeCourier/${managerid}`}><Button size="large" color="primary">
           Close
         </Button></Link>
-        {/* <Button size="small" color="primary">
-          Learn More
-        </Button> */}
       </CardActions>
     </Card>
     </Grid>
@@ -111,9 +109,6 @@ export default function ShipmentCards() {
       <Link to={`/rejectCourier/${managerid}`}><Button size="large" color="primary">
           Reject
         </Button></Link>
-        {/* <Button size="small" color="primary">
-          Learn More
-        </Button> */}
       </CardActions>
     </Card>
     </Grid>
@@ -144,9 +139,6 @@ export default function ShipmentCards() {
       <Link to={`/getStatus/${managerid}`}><Button size="large" color="primary">
           Check Status
         </Button></Link>
-        {/* <Button size="small" color="primary">
-          Learn More
-        </Button> */}
       </CardActions>
     </Card>
     </Grid>

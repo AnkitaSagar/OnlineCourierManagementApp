@@ -1,3 +1,7 @@
+/*
+ *  Component for shipment module to link NavBar, header and cards 
+ */
+
 import React from 'react';
 import { Link, useParams } from 'react-router-dom';
 import ShipmentCards from '../component/ShipmentCards';
@@ -19,19 +23,6 @@ export default function ShipmentComponent () {
             <Box m={5}/>
             <ShipmentCards/>
             <Box m={15}/>
-            {/* <h2>Shipment Home Page</h2>
-            <p>
-                <Link to={`/initiateCourier/${managerid}`}>Initiate Process</Link>
-            </p>
-            <p>
-                <Link to={`/closeCourier/${managerid}`}>Close Process</Link>
-            </p>
-            <p>
-                <Link to={`/rejectCourier/${managerid}`}>Reject Process</Link>
-            </p>
-            <p>
-                <Link to={`/getStatus/${managerid}`}>Check Status</Link>
-            </p> */}
         </div>
     )
 

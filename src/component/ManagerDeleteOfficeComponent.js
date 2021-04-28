@@ -1,8 +1,10 @@
+/*
+ *  Form for deleting an office
+ */
+
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
-import { Redirect } from 'react-router-dom';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import Box from '@material-ui/core/Box';
@@ -51,9 +53,6 @@ class ManagerDeleteOfficeComponent extends React.Component {
                         <AlertTitle>Success</AlertTitle>
                      You have successfully deleted the office!
             </Alert>
-
-            // const { match } = this.props;
-            // return <Redirect to={`/manager/managerid=${Number(match.params.managerid)}/Home`} />;
         }
 
         return (
@@ -97,17 +96,6 @@ class ManagerDeleteOfficeComponent extends React.Component {
                     Delete
                 </Button>
 
-                {/* <p>
-                    <label>Re-enter Manager Id:</label>
-                    <input type="number" placeholder="Manager Id" name="managerid" id="managerid" value={this.state.managerid} onChange={this.handleInputChange}></input>
-                </p>
-                <p>
-                    <label>Office to Delete:</label>
-                    <input type="number" placeholder="Office Id" name="officeid" id="officeid" value={this.state.officeid} onChange={this.handleInputChange}></input>
-                </p>
-                <p>
-                    <button onClick={this.doDeleteOffice}>Delete</button>
-                </p> */}
             </div>
 
         )

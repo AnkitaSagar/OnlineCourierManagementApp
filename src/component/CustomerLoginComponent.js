@@ -1,3 +1,7 @@
+/*
+ *  Form for logging in for a customer
+ */
+
 import React from 'react';
 import { Redirect } from 'react-router-dom';
 import { bindActionCreators } from 'redux';
@@ -92,69 +96,57 @@ class CustomerLoginComponent extends React.Component {
                     (this.props.isAuthCustomer === false) && <div>Invalid Login Credentials!</div>
                 }
 
-            <TextField
-              variant="outlined"
-              margin="normal"
-              required
-              fullWidth
-              type="number"
-              id="customerid"
-              label="Customer Id"
-              name="customerid"
-              autoComplete="customerid"
-              value={this.state.customerid} 
-              onChange={this.handleInputChange}
-              autoFocus
-            />
+                <TextField
+                variant="outlined"
+                margin="normal"
+                required
+                fullWidth
+                type="number"
+                id="customerid"
+                label="Customer Id"
+                name="customerid"
+                autoComplete="customerid"
+                value={this.state.customerid} 
+                onChange={this.handleInputChange}
+                autoFocus
+                />
 
-            <TextField
-              variant="outlined"
-              margin="normal"
-              required
-              fullWidth
-              name="password"
-              label="Password"
-              type="password"
-              id="password"
-              value={this.state.password} 
-              onChange={this.handleInputChange}
-              autoComplete="password"
-            />
+                <TextField
+                variant="outlined"
+                margin="normal"
+                required
+                fullWidth
+                name="password"
+                label="Password"
+                type="password"
+                id="password"
+                value={this.state.password} 
+                onChange={this.handleInputChange}
+                autoComplete="password"
+                />
 
-            <FormControlLabel
-              control={<Checkbox value="remember" color="primary" />}
-              label="Remember me"
-            />
+                <FormControlLabel
+                control={<Checkbox value="remember" color="primary" />}
+                label="Remember me"
+                />
 
-            <Button
-              type="submit"
-              fullWidth
-              variant="contained"
-              color="primary"
-              onClick={this.doLogin}
-            >
-              Log In
-            </Button>
+                <Button
+                type="submit"
+                fullWidth
+                variant="contained"
+                color="primary"
+                onClick={this.doLogin}
+                >
+                Log In
+                </Button>
 
-            <Grid container>
-              <Grid item>
-                <Link href="/register" variant="body2">
-                  {"Don't have an account? Sign Up"}
-                </Link>
-              </Grid>
-            </Grid>
-
-                {/* <p>
-                    <input type="number" placeholder="Customer Id" name="customerid" id="customerid" value={this.state.customerid} onChange={this.handleInputChange}></input>
-                    <div className="text-danger">{this.state.errors.customerid}</div>
-                </p> */}
-                {/* <p>
-                    <input type="password" placeholder="Password" name="password" id="password" value={this.state.password} onChange={this.handleInputChange}></input>
-                    <div className="text-danger">{this.state.errors.password}</div>
-                </p> */}
-                {/* <p>
-                    <button onClick={this.doLogin}>Login</button>
-                </p> */}
+                <Grid container>
+                    <Grid item>
+                        <Link href="/register" variant="body2">
+                            {"Don't have an account? Sign Up"}
+                        </Link>
+                    </Grid>
+                </Grid>
             </div>
 
         )

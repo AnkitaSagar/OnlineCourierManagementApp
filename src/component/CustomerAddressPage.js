@@ -1,3 +1,7 @@
+/*
+ *  Page for adding their address by a customer
+ */
+
 import React from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import CssBaseline from '@material-ui/core/CssBaseline';

@@ -1,3 +1,7 @@
+/*
+ *  Cards for Manager Landing page 
+ */
+
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
@@ -36,7 +40,7 @@ export default function ImgMediaCard() {
       <Box m={10}/>
       <Typography color= "secondary" gutterBottom variant="h5" component="h2">Welcome Manager!</Typography>
       <Box m={5}/>
-      <Carousel fade>
+            <Carousel fade>
                 <Carousel.Item>
                   <Card>
                     <CardActionArea>
@@ -218,55 +222,55 @@ export default function ImgMediaCard() {
                 </Carousel.Item>
                 </Carousel>
                 <Grid container component="main" spacing={3} direction="row" justify="space-around" alignItems="center">
-      <Grid item xs>
-      <Paper className={classes.paper}>
-      <Card className={classes.root}>
-      <CardActionArea>
-        <CardMedia
-          component="img"
-          alt="Couriers"
-          height="200"
-          image="https://www.parallax.lk/wp-content/uploads/2020/07/image_2020_07_15T18_22_19_818Z.png"
-          title="Couriers"
-        />
-      </CardActionArea>
-    </Card>
-    </Paper>
-    </Grid>
+                  <Grid item xs>
+                    <Paper className={classes.paper}>
+                        <Card className={classes.root}>
+                         <CardActionArea>
+                            <CardMedia
+                              component="img"
+                              alt="Couriers"
+                              height="200"
+                              image="https://www.parallax.lk/wp-content/uploads/2020/07/image_2020_07_15T18_22_19_818Z.png"
+                              title="Couriers"
+                            />
+                          </CardActionArea>
+                        </Card>
+                      </Paper>
+                  </Grid>
 
-      <Grid item xs>
-      <Paper className={classes.paper}>
-      <Card className={classes.root}>
-      <CardActionArea>
-        <CardMedia
-          component="img"
-          alt="Manager Login"
-          height="200"
-          image="https://innovecs.com/wp-content/uploads/2019/08/package-delivery-worldwide.png"
-          title="Manager Login"
-        />
-      </CardActionArea>
-    </Card>
-    </Paper>
-    </Grid>
+                <Grid item xs>
+                  <Paper className={classes.paper}>
+                    <Card className={classes.root}>
+                      <CardActionArea>
+                        <CardMedia
+                          component="img"
+                          alt="Manager Login"
+                          height="200"
+                          image="https://innovecs.com/wp-content/uploads/2019/08/package-delivery-worldwide.png"
+                          title="Manager Login"
+                        />
+                      </CardActionArea>
+                  </Card>
+                </Paper>
+              </Grid>
 
-    <Grid item xs>
-      <Paper className={classes.paper}>
-      <Card className={classes.root}>
-      <CardActionArea>
-        <CardMedia
-          component="img"
-          alt="Customer Register"
-          height="200"
-          image="https://innovecs.com/wp-content/uploads/2019/07/share-of-delivery-cost-in-logistics.png"
-          title="Customer Register"
-        />
-      </CardActionArea>
-    </Card>
-    </Paper>
-    </Grid>
-    </Grid>
-    <Box m={10}/>
+              <Grid item xs>
+                  <Paper className={classes.paper}>
+                    <Card className={classes.root}>
+                    <CardActionArea>
+                      <CardMedia
+                        component="img"
+                        alt="Customer Register"
+                        height="200"
+                        image="https://innovecs.com/wp-content/uploads/2019/07/share-of-delivery-cost-in-logistics.png"
+                        title="Customer Register"
+                      />
+                    </CardActionArea>
+                  </Card>
+                </Paper>
+              </Grid>
+            </Grid>
+            <Box m={10}/>
     </div>
 
   );

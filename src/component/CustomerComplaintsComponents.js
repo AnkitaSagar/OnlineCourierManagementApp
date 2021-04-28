@@ -1,3 +1,7 @@
+/*
+ *  Table for getting all complaints by a customer
+ */
+
 import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';

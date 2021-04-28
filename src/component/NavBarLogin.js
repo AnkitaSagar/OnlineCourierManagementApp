@@ -1,3 +1,7 @@
+/*
+ *  NavBar for AboutUs and Services page
+ */
+
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import IconButton from '@material-ui/core/IconButton';
@@ -5,10 +9,7 @@ import AccountCircle from '@material-ui/icons/AccountCircle';
 import MenuIcon from '@material-ui/icons/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
-import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
 import { Link } from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
@@ -56,14 +57,6 @@ export default function NavbarBarLogin () {
                 <IconButton edge="start" className={classes.menuButton} color="secondary" aria-label="menu">
                     <MenuIcon />
                 </IconButton>
-                {/* <List component="nav" aria-label="secondary mailbox folders">
-                    <ListItem button>
-                    <ListItemText primary="Trash" />
-                    </ListItem>
-                    <ListItemLink href="#simple-list">
-                    <ListItemText primary="Spam" />
-                    </ListItemLink>
-                </List> */}
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav mr-auto">

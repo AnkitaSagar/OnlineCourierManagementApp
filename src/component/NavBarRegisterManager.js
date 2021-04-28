@@ -1,8 +1,11 @@
+/*
+ *  NavBar for coming out of any services and going back to home page or logout for manager
+ */
+
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import IconButton from '@material-ui/core/IconButton';
 import AccountCircle from '@material-ui/icons/AccountCircle';
-import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 import ListItem from '@material-ui/core/ListItem';
@@ -54,18 +57,7 @@ export default function NavbarBarLogin () {
         return(
 
             <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-                {/* <IconButton edge="start" className={classes.menuButton} color="secondary" aria-label="menu">
-                <Link to={`/`}><ArrowBackIcon /></Link>
-                </IconButton> */}
-                {/* <List component="nav" aria-label="secondary mailbox folders">
-                    <ListItem button>
-                    <ListItemText primary="Trash" />
-                    </ListItem>
-                    <ListItemLink href="#simple-list">
-                    <ListItemText primary="Spam" />
-                    </ListItemLink>
-                </List> */}
-
+                
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item">

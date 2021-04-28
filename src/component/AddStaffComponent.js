@@ -1,7 +1,10 @@
+/*
+ *  Form for adding a new staff to the office by a manager
+ */
+
 import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { Redirect } from 'react-router-dom';
 import * as managerActions from '../store/actions/ManagerActions';
 import TextField from '@material-ui/core/TextField';
 import Box from '@material-ui/core/Box';
@@ -51,67 +54,7 @@ class AddStaffComponent extends Component {
         const { managerActions, match } = this.props;
         managerActions.createStaff(payload);
 
-        // if(this.validate()) {
-        //     const { homeActions } = this.props;
-        //     homeActions.createCustomer(payload);        
-        // }
-
     }
-
-    // validate(){
-
-    //     let aadharno = this.state.aadharno;
-    //     let firstname =  this.state.firstname;
-    //     let lastname = this.state.lastname;
-    //     let password = this.state.password;
-    //     let mobileno = this.state.mobileno;
-    //     let accountHolderName = this.state.accountHolderName;
-    //     let accountType = this.state.accountType;
-    //     let accountno = this.state.accountno;
-    //     let errors = {};
-    //     let isValid = true;
-
-    //     if (!aadharno) {
-    //       isValid = false;
-    //       errors["aadharno"] = "Please enter a value";
-    //     }
-
-    //     if (!firstname) {
-    //       isValid = false;
-    //       errors["firstname"] = "This field cannot be empty";
-    //     }
-
-    //     if (!lastname) {
-    //         isValid = false;
-    //         errors["lastname"] = "This field cannot be empty";
-    //     }
-
-    //     if (!password) {
-    //         isValid = false;
-    //         errors["password"] = "A digit must occur at least once, A lower case letter must occur at least once, An upper case letter must occur at least once, A special character must occur at least once, No whitespace allowed in the entire password, Atleast 8 characters must be there";
-    //     }
-
-    //     if (!mobileno) {
-    //         isValid = false;
-    //         errors["mobileno"] = "This field cannot be empty";
-    //     }
-
-    //     if (!accountHolderName) {
-    //         isValid = false;
-    //         errors["accountHolderName"] = "This field cannot be empty";
-    //     }
-
-    //     if (!accountno) {
-    //         isValid = false;
-    //         errors["accountno"] = "This field cannot be empty";
-    //     }
-
-    //     this.setState({
-    //       errors: errors
-    //     });
-
-    //     return isValid;
-    // }
 
     clear = () => {
         this.setState = ({
@@ -126,17 +69,10 @@ class AddStaffComponent extends Component {
 
     render() {
 
-        // if (this.props.staff !== undefined) {
-
-        //     const { match } = this.props;
-        //     let empid = parseInt(match.params.managerid)
-        //     return <Redirect to={`/manager/managerid=${empid}/Home`} />;
-        // }
-
         if(this.props.staff !== undefined) {
             return <Alert severity="success">
-                        <AlertTitle>Success</AlertTitle>
-                     You have successfully added a new staff!
+                <AlertTitle>Success</AlertTitle>
+                You have successfully added a new staff!
             </Alert>
         }
 
@@ -208,40 +144,9 @@ class AddStaffComponent extends Component {
                 />
                 <Box m={2} />
 
-            <Button variant="contained" color="secondary" onClick={this.createStaff}>
-                Add
-            </Button>
-
-
-            {/* <h3>Add Staff</h3>
-            <form onSubmit={this.createStaff}>
-                <table>
-                    <tbody>
-                        <tr>
-                            <td><label>Name:</label></td>
-                            <td><input type="text" placeholder="Name" name="name" id="name" value={this.state.name} onChange={this.handleInputChange}></input></td>
-                        </tr>
-                        <tr>
-                            <td><label>Office Id:</label></td>
-                            <td><input type="number" placeholder="OfficeId" name="officeid" id="officeid" value={this.state.officeid} onChange={this.handleInputChange}></input></td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <label>
-                                Choose your Staff Type:
-                                <select type="text" name="role" id="role" value={this.state.role} onChange={this.handleInputChange}> 
-                                    <option value="STAFF">STAFF</option>           
-                                    <option value="ACCOUNTING">ACCOUNTING</option>
-                                    <option value="SALES">SALES</option>
-                                    <option value="MARKETING">MARKETING</option>
-                                </select>
-                                </label>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-                <input type="submit" value="Submit"></input>
-            </form> */}
+                <Button variant="contained" color="secondary" onClick={this.createStaff}>
+                    Add
+                </Button>
         </div >
     );
 }

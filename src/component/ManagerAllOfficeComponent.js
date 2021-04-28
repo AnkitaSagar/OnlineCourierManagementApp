@@ -1,3 +1,7 @@
+/*
+ *  Listing all offices 
+ */
+
 import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
@@ -54,8 +58,6 @@ class ManagerAllOfficeComponent extends Component {
                                             <div class="col">{office.officeid}</div>
                                             <div class="col">{office.openingTime}</div>
                                             <div class="col">{office.closingTime}</div>
-                                            {/* <div class="col"><Link to={`/addAddress/${match.params.managerid}/office/${office.officeid}`}>Update</Link></div>
-                                            <div class="col"><Link to={`/deleteOffice/${match.params.managerid}/office/${office.officeid}`}>Delete</Link></div> */}
                                             <div class= "col">
                                                 <IconButton size="large" color="secondary" >
                                                 <Link to={`/addAddress/${match.params.managerid}/office/${office.officeid}`}>

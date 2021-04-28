@@ -1,3 +1,8 @@
+/*
+ *  Page for registering a new customer
+ */
+
+
 import React from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -42,17 +47,14 @@ const useStyles = makeStyles((theme) => ({
         backgroundColor: theme.palette.secondary.main,
     },
     form: {
-        width: '100%', // Fix IE 11 issue.
+        width: '100%',
         marginTop: theme.spacing(5),
        
     },
     submit: {
         margin: theme.spacing(0, 0 ,0),
     },
-    // formControl: {
-    //   margin: theme.spacing(1),
-    //   minWidth: 120,
-    // },
+    
     selectEmpty: {
       marginTop: theme.spacing(2),
     },

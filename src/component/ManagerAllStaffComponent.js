@@ -1,8 +1,11 @@
+/*
+ *  Listing all the staffs from all offices 
+ */
+
 import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as managerActions from '../store/actions/ManagerActions';
-import { Link } from 'react-router-dom';
 import Box from '@material-ui/core/Box';
 import ManagerStaffsPage from '../component/ManagerStaffsPage';
 import TestNav2Manager from '../component/TestNav2Manager';
